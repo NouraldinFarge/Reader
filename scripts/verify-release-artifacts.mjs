@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict';
-import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { readFile, readdir, stat } from 'node:fs/promises';
 import { resolve, sep } from 'node:path';
 import JSZip from 'jszip';
+import { inspectAuthenticode } from './authenticode.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 const args = process.argv.slice(2);
@@ -48,6 +48,7 @@ for (const artifact of manifest.artifacts) {
 for (const kind of [
   'source-archive',
   'windows-nsis-installer',
+  'windows-executable',
   'spdx-sbom',
   'third-party-notices',
   'release-notes',
@@ -93,23 +94,19 @@ for (const entry of archiveEntries) {
 }
 
 const installer = verified.find((artifact) => artifact.kind === 'windows-nsis-installer');
+const executable = verified.find((artifact) => artifact.kind === 'windows-executable');
 assert.deepEqual([...installer.buffer.subarray(0, 2)], [0x4d, 0x5a], 'Installer is not a Windows PE file');
+assert.deepEqual([...executable.buffer.subarray(0, 2)], [0x4d, 0x5a], 'Executable is not a Windows PE file');
 if (process.platform === 'win32') {
-  const escaped = installer.path.replaceAll("'", "''");
-  const result = spawnSync(
-    'powershell.exe',
-    [
-      '-NoProfile',
-      '-NonInteractive',
-      '-Command',
-      `(Get-AuthenticodeSignature -LiteralPath '${escaped}' | Select-Object Status,StatusMessage,SignerCertificate | ConvertTo-Json -Compress -Depth 4)`,
-    ],
-    { encoding: 'utf8' },
-  );
-  assert.equal(result.status, 0, result.stderr);
-  const signature = JSON.parse(result.stdout.trim());
-  assert.equal(signature.Status, manifest.authenticode.status);
-  if (manifest.authenticode.status === 'NotSigned') assert.equal(signature.SignerCertificate, null);
+  const installerSignature = inspectAuthenticode(installer.path);
+  const executableSignature = inspectAuthenticode(executable.path);
+  assert.deepEqual(installerSignature, manifest.authenticode);
+  assert.deepEqual(installerSignature, manifest.signatures.installer);
+  assert.deepEqual(executableSignature, manifest.signatures.executable);
+  if (manifest.authenticode.status === 'NotSigned') {
+    assert.equal(installerSignature.signerSubject, null);
+    assert.equal(executableSignature.signerSubject, null);
+  }
 }
 
 const sbomArtifact = verified.find((artifact) => artifact.kind === 'spdx-sbom');

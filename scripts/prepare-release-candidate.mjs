@@ -3,6 +3,7 @@ import { spawnSync } from 'node:child_process';
 import { constants, copyFile, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { basename, dirname, resolve } from 'node:path';
 import { createHash } from 'node:crypto';
+import { inspectAuthenticode } from './authenticode.mjs';
 import { assertWindowsGuiPe } from './windows-pe.mjs';
 
 const root = resolve(import.meta.dirname, '..');
@@ -41,29 +42,6 @@ function run(command, commandArgs) {
 
 function sha256(buffer) {
   return createHash('sha256').update(buffer).digest('hex');
-}
-
-function authenticode(path) {
-  assert.equal(process.platform, 'win32', 'Authenticode inspection requires Windows');
-  const escaped = path.replaceAll("'", "''");
-  const command = [
-    `$signature = Get-AuthenticodeSignature -LiteralPath '${escaped}'`,
-    '[pscustomobject]@{',
-    'Status = [string]$signature.Status',
-    'StatusMessage = $signature.StatusMessage',
-    'SignerSubject = if ($signature.SignerCertificate) { $signature.SignerCertificate.Subject } else { $null }',
-    '} | ConvertTo-Json -Compress',
-  ].join('\n');
-  const result = spawnSync('powershell.exe', ['-NoProfile', '-NonInteractive', '-Command', command], {
-    encoding: 'utf8',
-  });
-  if (result.status !== 0) throw new Error(`Authenticode inspection failed: ${result.stderr}`);
-  const parsed = JSON.parse(result.stdout.trim());
-  return {
-    status: parsed.Status,
-    statusMessage: parsed.StatusMessage,
-    signerSubject: parsed.SignerSubject,
-  };
 }
 
 assert.equal(packageJson.version, facts.product.developmentVersion);
@@ -123,8 +101,8 @@ for (const input of inputs) {
 const executablePath = resolve(directory, `Reader_${packageJson.version}_x64.exe`);
 const installerPath = resolve(directory, basename(options.get('installer')));
 const pe = assertWindowsGuiPe(await readFile(executablePath));
-const installerSignature = authenticode(installerPath);
-const executableSignature = authenticode(executablePath);
+const installerSignature = inspectAuthenticode(installerPath);
+const executableSignature = inspectAuthenticode(executablePath);
 const createdAt = new Date().toISOString().replace(/\.\d{3}Z$/, 'Z');
 const manifest = {
   schemaVersion: 1,
