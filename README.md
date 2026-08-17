@@ -117,7 +117,7 @@ Install the current Tauri v2 Windows prerequisites: Rust with the MSVC target, M
 pnpm install --frozen-lockfile
 pnpm test:rust
 pnpm verify:windows-dependencies
-pnpm tauri build --bundles nsis
+pnpm build:windows:release
 ```
 
 The resulting local NSIS candidate is intentionally unsigned. There is no approved public download or release URL. A stable public binary release requires Authenticode signing and a clean Windows 10/11 install/upgrade/uninstall matrix.
