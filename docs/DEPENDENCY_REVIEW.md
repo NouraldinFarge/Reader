@@ -1,6 +1,6 @@
 # Dependency and advisory review
 
-Verified August 17, 2026 for the private `0.1.0-alpha.4` candidate.
+Verified August 17, 2026 for the public-source `0.1.0-alpha.4` candidate.
 
 ## Vendored runtime files
 

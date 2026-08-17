@@ -1,15 +1,16 @@
-# Verified recruiter copy — do not publish yet
+# Verified recruiter copy — not approved for profile use
 
 Canonical facts date: August 17, 2026  
 Exact candidate: `0.1.0-alpha.4`  
-Status: private GitHub staging candidate; not publicly released  
-Repository URL: <https://github.com/NouraldinFarge/Reader> (private staging)  
+Status: public source repository; no public binary release
+
+Repository URL: <https://github.com/NouraldinFarge/Reader>
 Release URL: not available—no release approved  
-Demo URL: not available—no public demo approved  
+Demo URL: not available—no standalone demo URL approved
 License: MIT  
 Installer: local unsigned candidate only; public download prohibited
 
-Every draft below is synchronized with `docs/PROJECT_FACTS.json`. The source is staged only in a private GitHub repository; none of this recruiter copy has been placed on a résumé, portfolio, LinkedIn, Indeed, or another public surface.
+Every draft below is synchronized with `docs/PROJECT_FACTS.json`. The source repository is public by owner decision; none of this recruiter copy has been placed on a résumé, portfolio, LinkedIn, Indeed, or another professional surface.
 
 ## Canonical positioning
 
@@ -24,7 +25,7 @@ Local-first Windows reading library with bounded publication imports, offline pr
 - Formats: EPUB 2/3, PDF, TXT, Markdown, HTML, unprotected M4B/M4A/MP3/AAC/OGG/WAV, protected AAX metadata only
 - Automated evidence: 40/40 Node tests; 7/7 Chromium scenario groups; six axe scans with zero serious/critical findings; 99.19% lines and 89.67% branches across import policy/save coordination
 - Candidate date: August 17, 2026
-- Current blockers: Authenticode signing, clean Windows install/upgrade/uninstall matrix, manual assistive-technology/high-contrast/400% zoom checks, security-route verification, and final publication approval
+- Current binary-release blockers: Authenticode signing, clean Windows install/upgrade/uninstall matrix, manual assistive-technology/high-contrast/400% zoom checks, security-route verification, and separate release approval
 
 ## GitHub About draft
 
@@ -38,7 +39,7 @@ Do not add `react`, `typescript`, `vite`, `sqlite`, `cloud-sync`, `drm`, or `aax
 
 ### Short version
 
-Built Reader `0.1.0-alpha.4`, a private local-first Windows reading-library candidate for EPUB, PDF, text, Markdown/HTML, and authorized audio, with offline progress, bookmarks, annotations, collections, and privacy-aware export.
+Built Reader `0.1.0-alpha.4`, a public-source local-first Windows reading-library alpha for EPUB, PDF, text, Markdown/HTML, and authorized audio, with offline progress, bookmarks, annotations, collections, and privacy-aware export.
 
 ### Full version
 
@@ -51,17 +52,17 @@ Indeed should use these exact bullets, shortened only for layout. Do not create 
 
 ### Short version
 
-Reader is a private local-first Windows reading-library candidate with bounded EPUB/PDF/text imports, offline progress and annotations, and a least-privilege Tauri shell.
+Reader is a public-source local-first Windows reading-library alpha with bounded EPUB/PDF/text imports, offline progress and annotations, and a least-privilege Tauri shell.
 
 ### Full version
 
-Reader brings authorized EPUB, PDF, text, and unprotected audio files into a focused local library. It combines bounded import parsing, allowlist-sanitized content, disabled PDF scripting/evaluation, reliable offline progress and annotations, metadata-only protected-AAX handling, and a native shell that exposes no generic network, shell, process, or broad filesystem authority. The MIT-licensed `0.1.0-alpha.4` candidate is backed by unit, parser, persistence, browser, accessibility-automation, dependency, and artifact checks; it remains private while signing and clean-Windows validation are incomplete.
+Reader brings authorized EPUB, PDF, text, and unprotected audio files into a focused local library. It combines bounded import parsing, allowlist-sanitized content, disabled PDF scripting/evaluation, reliable offline progress and annotations, metadata-only protected-AAX handling, and a native shell that exposes no generic network, shell, process, or broad filesystem authority. The MIT-licensed `0.1.0-alpha.4` source is public and backed by unit, parser, persistence, browser, accessibility-automation, dependency, and artifact checks; binaries remain unpublished while signing and clean-Windows validation are incomplete.
 
 ## GitHub profile draft
 
 ### Short version
 
-**Reader `0.1.0-alpha.4`** — Private local-first Windows reading-library candidate with bounded imports, offline progress and annotations, and a least-privilege Tauri shell. JavaScript · IndexedDB · Rust/Tauri.
+**Reader `0.1.0-alpha.4`** — Public-source local-first Windows reading-library alpha with bounded imports, offline progress and annotations, and a least-privilege Tauri shell. JavaScript · IndexedDB · Rust/Tauri.
 
 ### Full version
 
@@ -71,15 +72,15 @@ Reader brings authorized EPUB, PDF, text, and unprotected audio files into a foc
 
 ### Short version
 
-Built and locally verified Reader `0.1.0-alpha.4`, a private local-first Windows reading-library candidate for EPUB, PDF, text, Markdown/HTML, and authorized audio.
+Built and locally verified Reader `0.1.0-alpha.4`, a public-source local-first Windows reading-library alpha for EPUB, PDF, text, Markdown/HTML, and authorized audio.
 
 ### Full version
 
-Built Reader `0.1.0-alpha.4`, an MIT-licensed local-first Windows reading-library candidate for authorized EPUB, PDF, text, Markdown/HTML, and unprotected audio. Implemented bounded EPUB imports, allowlist-sanitized markup, a hardened local PDF.js renderer, offline IndexedDB progress, bookmarks, highlights, notes, collections, and a least-privilege one-window Tauri shell. Protected AAX files are metadata only—Reader does not request activation data, store protected payloads, decrypt, convert, or play them. Verified locally with 40 Node tests, seven real Chromium scenario groups, dependency scans, vendor hashes, and six axe scans with zero serious/critical findings. The project remains in private staging pending a signed installer and clean Windows release matrix.
+Built Reader `0.1.0-alpha.4`, an MIT-licensed, public-source local-first Windows reading-library alpha for authorized EPUB, PDF, text, Markdown/HTML, and unprotected audio. Implemented bounded EPUB imports, allowlist-sanitized markup, a hardened local PDF.js renderer, offline IndexedDB progress, bookmarks, highlights, notes, collections, and a least-privilege one-window Tauri shell. Protected AAX files are metadata only—Reader does not request activation data, store protected payloads, decrypt, convert, or play them. Verified locally with 40 Node tests, seven real Chromium scenario groups, dependency scans, vendor hashes, and six axe scans with zero serious/critical findings. Public binaries remain pending a signed installer and clean Windows release matrix.
 
 ## Current limitations for every surface
 
-- Private staging alpha; repository URL exists, but there is no public release or demo URL.
+- Public source alpha; there is no public binary release or standalone demo URL.
 - IndexedDB durability depends on the local WebView2 profile; JSON export cannot restore a library.
 - Canvas-only PDF without text selection, document search, PDF annotations, password-entry UI, or complete screen-reader access.
 - No fixed-layout/protected EPUB, CFI locations, background media controls, cloud sync, or cross-device support.
@@ -102,11 +103,11 @@ AI coding agents assisted with research, implementation, testing, and iteration.
 | Notes/search               | `docs/media/screenshots/notes-and-search.png`           | “Reader highlights view showing one original synthetic quote and private-note workflow.”                           |
 | Protected-content boundary | `docs/media/screenshots/protected-content-boundary.png` | “Reader metadata-only protected-content screen explaining that playback and decryption are unavailable.”           |
 | Appearance controls        | `docs/media/screenshots/appearance-controls.png`        | “Reader appearance panel with paper, sepia, and night themes and typography controls.”                             |
-| Recruiter demo             | `docs/media/demo/reader-alpha4-demo.mp4`                | 75-second real-UI walkthrough; private/local file only until human approval.                                       |
-| Demo thumbnail             | `docs/media/demo/reader-alpha4-demo-thumbnail.png`      | Real library UI thumbnail; local file only until human approval.                                                   |
+| Recruiter demo             | `docs/media/demo/reader-alpha4-demo.mp4`                | 75-second real-UI repository asset; no standalone hosted demo URL.                                                 |
+| Demo thumbnail             | `docs/media/demo/reader-alpha4-demo-thumbnail.png`      | Real library UI thumbnail tracked with the public source.                                                          |
 | GitHub social preview      | `docs/media/social/github-social-preview.png`           | 1280×640 composition using the real library capture and verified positioning.                                      |
 | Portfolio preview          | `docs/media/social/portfolio-og-preview.png`            | 1200×630 composition using the real Reader UI and verified stack.                                                  |
 
 ## Publication checklist for copy owners
 
-Before copying any draft to a public surface, add only approved live URLs, rerun the facts checker, update evidence from the signed clean-machine candidate, remove “private candidate” only if genuinely published, and obtain separate approval for each live edit. Never change “built” to “released” merely because a local installer exists.
+Before copying any draft to a professional profile or résumé, add only approved live URLs, rerun the facts checker, update evidence from the signed clean-machine candidate, and obtain separate approval for each live edit. Never change “built” to “released” merely because the source repository is public or a local installer exists.

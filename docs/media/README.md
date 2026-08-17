@@ -27,4 +27,4 @@ Alt text is centralized in `docs/RECRUITER_COPY.md` and used by the README where
 - `social/portfolio-og-preview.png` — 1200×630.
 - `social/preview-source.html` — reproducible composition source using the real library capture.
 
-The previews intentionally say “Private alpha” and make no release, signing, licensing, stability, accessibility-conformance, or vulnerability-free claim. They are local drafts only and have not been uploaded anywhere.
+The rendered previews retain the historical “Private alpha” label from the pre-publication review. They are archived design drafts, are not configured as the repository's live social preview, and must be regenerated with current public-source wording before external promotional use.

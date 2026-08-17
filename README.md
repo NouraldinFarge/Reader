@@ -2,7 +2,7 @@
 
 Reader is a Windows prerelease for reading authorized EPUB, PDF, text, and audio files without an account, storefront, telemetry, or required network connection.
 
-> **Publication status:** `0.1.0-alpha.4` is staged in a private GitHub repository and is not a public release. The source is MIT-licensed; the installer remains unsigned and has not completed the clean-Windows release matrix.
+> **Repository status:** The source repository is public by owner decision. `0.1.0-alpha.4` remains an unreleased prerelease with no supported public binary download; the installer is unsigned and has not completed the clean-Windows release matrix.
 
 ![Reader library overview with three synthetic demo titles](docs/media/screenshots/library-overview.png)
 
@@ -129,7 +129,7 @@ The resulting local NSIS candidate is intentionally unsigned. There is no approv
 - PDF password entry, PDF annotations, full-document PDF search, fixed-layout EPUB, protected EPUB, EPUB CFI locations, background media controls, sync, and cloud backup are not implemented.
 - Audio decoding varies with Windows WebView2 codecs.
 - Automated axe checks do not replace assistive-technology or scoped accessibility auditing.
-- The private staging candidate has not completed a clean Windows 10/11 installation, upgrade, uninstall, and residual-user-data matrix.
+- The public-source alpha has not completed a clean Windows 10/11 installation, upgrade, uninstall, and residual-user-data matrix.
 - The installer is unsigned; no signing certificate or signing authorization has been provided.
 
 ## Project history, support, and licensing
@@ -137,7 +137,7 @@ The resulting local NSIS candidate is intentionally unsigned. There is no approv
 Development began as local work before this repository history was initialized. The initial Git commit records a sanitized import of that existing alpha work; it does not pretend to capture earlier development chronology. The owner-confirmed record is in [Project provenance](docs/PROVENANCE.md).
 
 - Read [Support](SUPPORT.md) before sharing diagnostic information.
-- Report security concerns through the private route described in [Security](SECURITY.md).
+- Follow the current private-reporting availability and redaction guidance in [Security](SECURITY.md) before sharing a suspected vulnerability.
 - Review [Contributing](CONTRIBUTING.md), [Roadmap](ROADMAP.md), [release process](docs/RELEASE_PROCESS.md), and [release notes](docs/RELEASE_NOTES.md).
 - Vendored and build dependencies retain their upstream licenses in [third-party notices](THIRD_PARTY_NOTICES.md) and the [component manifest](THIRD_PARTY_COMPONENTS.json).
 

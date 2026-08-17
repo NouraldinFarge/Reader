@@ -63,7 +63,7 @@ The regression suite repeatedly covers pending and in-flight delete/reset races,
 
 Schema version `1` uses atomic transactions for import, book/blob deletion, reset, and reseeding. Integrity inspection reports orphaned blobs or annotations. The test-only quota scenario injects a synchronous `QuotaExceededError` at `IDBObjectStore.put` and proves the transaction aborts without partial data; it is not a measurement of a physical device's quota ceiling.
 
-IndexedDB remains acceptable for this private prerelease because the product makes no archival-durability claim and describes eviction/profile-loss risk. Any future SQLite migration requires a versioned restore/migration design, a narrow Rust command contract, and full packaged-app verification; it must not be done merely for presentation.
+IndexedDB remains acceptable for this public-source prerelease because the product makes no archival-durability claim and describes eviction/profile-loss risk. Any future SQLite migration requires a versioned restore/migration design, a narrow Rust command contract, and full packaged-app verification; it must not be done merely for presentation.
 
 ## Import trust model
 

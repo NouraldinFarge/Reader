@@ -22,8 +22,8 @@ assert.match(
   'Cargo.lock root package version drifted',
 );
 assert.equal(facts.product.latestPublicRelease, null, 'No public release has been approved');
-assert.equal(facts.product.publicStatus, 'private-github-staging-candidate');
-assert.equal(facts.product.publicationDecision, 'not-ready-for-publication');
+assert.equal(facts.product.publicStatus, 'public-source-repository');
+assert.equal(facts.product.publicationDecision, 'source-public-binary-release-blocked');
 assert.equal(facts.product.repositoryUrl, 'https://github.com/NouraldinFarge/Reader');
 assert.equal(facts.release.projectLicense, 'MIT');
 assert.equal(facts.release.signingStatus, 'unsigned-certificate-and-signing-authorization-required');
@@ -45,7 +45,11 @@ for (const path of synchronizedFiles) {
 const readme = await readText('README.md');
 const recruiter = await readText('docs/RECRUITER_COPY.md');
 for (const content of [readme, recruiter]) {
-  assert.match(content, /private|not published/i, 'Publication status must remain explicit');
+  assert.match(
+    content,
+    /public source|public-source|source repository is public|no public release|not publicly released/i,
+    'Source and binary-release status must remain explicit',
+  );
   assert.doesNotMatch(content, /\b(?:React|TypeScript|Vite|SQLite)-backed\b/i);
   assert.doesNotMatch(
     content,
@@ -80,5 +84,5 @@ try {
 }
 
 console.log(
-  `Facts verification passed for Reader ${version}; private staging status, versions, licensing, and measured claims agree.`,
+  `Facts verification passed for Reader ${version}; public-source status, blocked binary-release status, versions, licensing, and measured claims agree.`,
 );
