@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "ledgerVersion": 1,
+  "verifiedOn": "2026-08-17",
+  "product": {
+    "name": "Reader",
+    "subtitle": "a local-first reading library",
+    "developmentVersion": "0.1.0-alpha.4",
+    "candidateDate": "2026-08-17",
+    "latestPublicRelease": null,
+    "publicStatus": "private-local-candidate",
+    "publicationDecision": "not-ready-for-publication",
+    "repositoryUrl": null,
+    "releaseUrl": null,
+    "demoUrl": null
+  },
+  "positioning": "Local-first Windows reading library with bounded publication imports, offline progress and annotations, and a least-privilege Tauri shell.",
+  "technology": {
+    "frontend": ["HTML", "CSS", "plain JavaScript ES modules"],
+    "storage": "IndexedDB in the WebView profile",
+    "desktopShell": "Rust and Tauri v2",
+    "pdfRenderer": "Mozilla PDF.js 6.2.108",
+    "packaging": "Tauri NSIS current-user installer",
+    "notShipped": ["React", "TypeScript", "Vite", "SQLite", "cloud sync", "Rust domain backend"]
+  },
+  "formats": {
+    "epub": "EPUB 2/3 reflowable reading with sanitized package content",
+    "pdf": "canvas page rendering, page navigation, zoom, and progress",
+    "text": "TXT, Markdown, and HTML reading after normalization or sanitization",
+    "audio": "unprotected M4B, M4A, MP3, AAC, OGG, and WAV through WebView2 codecs",
+    "aax": "bounded metadata only; no payload storage, activation data, decryption, conversion, or playback"
+  },
+  "importLimits": {
+    "managedFileBytes": 536870912,
+    "epubArchiveBytes": 209715200,
+    "epubEntries": 5000,
+    "epubSections": 1000,
+    "epubEntryBytes": 16777216,
+    "epubMetadataBytes": 2097152,
+    "embeddedImageBytes": 8388608,
+    "embeddedImageCount": 200,
+    "embeddedImageTotalBytes": 50331648,
+    "textFileBytes": 33554432,
+    "markupNodes": 25000,
+    "markupDepth": 80,
+    "markupTextCharacters": 8000000,
+    "aaxHeaderBytes": 4194304
+  },
+  "trustBoundaries": [
+    "Every imported file is untrusted and subject to format-specific size and structure limits.",
+    "Imported markup is allowlist-sanitized; remote and active content is removed.",
+    "PDF scripting, evaluation, XFA, and remote workers are disabled.",
+    "The WebView receives no generic shell, process, network, or broad filesystem authority.",
+    "Reader creates one native WebView window, denies popup requests, and uses single-instance focus behavior.",
+    "Reader makes no application network requests, includes no telemetry, and requires no account."
+  ],
+  "verification": {
+    "verifiedOn": "2026-08-17",
+    "nodeTests": 40,
+    "nodeTestsPassed": 40,
+    "browserScenarioGroups": 7,
+    "browserScenarioGroupsPassed": 7,
+    "axeScans": 6,
+    "axeSeriousOrCriticalFindings": 0,
+    "coverage": {
+      "scope": ["app/src/import-policy.js", "app/src/save-coordinator.js"],
+      "linesPercent": 99.19,
+      "branchesPercent": 89.67,
+      "functionsPercent": 100,
+      "statementsPercent": 99.19
+    },
+    "cleanWindowsMatrix": "not-run",
+    "packagedApplicationMatrix": "pending-final-local-check"
+  },
+  "release": {
+    "sourceArchive": null,
+    "installer": null,
+    "checksumsFile": null,
+    "sbom": "sbom/reader-v0.1.0-alpha.4.spdx.json",
+    "signingStatus": "unsigned-owner-approval-and-certificate-required",
+    "projectLicense": "not-selected-owner-approval-required"
+  },
+  "knownLimitations": [
+    "IndexedDB durability and eviction are controlled by the Windows WebView2 profile; metadata export is one-way and not a restorable library backup.",
+    "PDF content is canvas-only, without a selectable text layer, document search, annotations, or complete screen-reader access.",
+    "Fixed-layout and protected EPUB, EPUB CFI locations, cross-device sync, and cloud backup are not implemented.",
+    "Audio codec behavior depends on the installed Windows WebView2 media engine.",
+    "The candidate has not completed a clean Windows 10/11 install, upgrade, uninstall, and residual-data matrix.",
+    "The installer is unsigned and the project source has no owner-approved license."
+  ],
+  "aiDisclosure": "AI coding agents assisted with research, implementation, testing, and iteration. Nouraldin Farge defined the requirements and architecture, reviewed and validated changes, set the safety, licensing, and data-source boundaries, and retains responsibility for published claims and releases."
+}

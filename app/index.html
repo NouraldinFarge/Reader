@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; worker-src 'self' blob:; connect-src 'none'; frame-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'"
+    />
+    <meta name="theme-color" content="#f3efe5" />
+    <meta
+      name="description"
+      content="Reader is a private, local-first library for books, PDFs, and audiobooks."
+    />
+    <title>Reader</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <div id="boot-screen" class="boot-screen" aria-live="polite">
+      <div class="boot-mark" aria-hidden="true">R</div>
+      <p>Opening your library…</p>
+    </div>
+
+    <div id="app" class="app-shell" hidden>
+      <aside class="sidebar" aria-label="Library navigation">
+        <button class="brand" type="button" data-route="library" aria-label="Reader home">
+          <span class="brand-mark" aria-hidden="true">R</span>
+          <span class="brand-word">Reader</span>
+        </button>
+
+        <nav class="primary-nav" aria-label="Main navigation">
+          <button class="nav-item is-active" type="button" data-route="library">
+            <span data-icon="library"></span>
+            <span>Library</span>
+            <span id="library-count" class="nav-count">0</span>
+          </button>
+          <button class="nav-item" type="button" data-route="progress">
+            <span data-icon="clock"></span>
+            <span>In progress</span>
+          </button>
+          <button class="nav-item" type="button" data-route="highlights">
+            <span data-icon="highlight"></span>
+            <span>Highlights</span>
+          </button>
+          <button class="nav-item" type="button" data-route="audiobooks">
+            <span data-icon="headphones"></span>
+            <span>Audiobooks</span>
+          </button>
+        </nav>
+
+        <div class="sidebar-section">
+          <div class="sidebar-section-heading">
+            <span>Collections</span>
+            <button
+              id="new-collection-button"
+              class="icon-button subtle"
+              type="button"
+              aria-label="Create collection"
+              title="Create collection"
+            >
+              <span data-icon="plus"></span>
+            </button>
+          </div>
+          <div id="collection-nav" class="collection-nav"></div>
+        </div>
+
+        <div class="sidebar-footer">
+          <div class="storage-card">
+            <span class="storage-icon" data-icon="shield"></span>
+            <div>
+              <strong>Private by design</strong>
+              <span>Your library stays on this device.</span>
+            </div>
+          </div>
+          <button id="settings-button" class="nav-item" type="button">
+            <span data-icon="settings"></span>
+            <span>Settings</span>
+          </button>
+        </div>
+      </aside>
+
+      <main class="main-shell">
+        <header class="topbar">
+          <button
+            id="mobile-menu-button"
+            class="icon-button mobile-only"
+            type="button"
+            aria-label="Open navigation"
+          >
+            <span data-icon="menu"></span>
+          </button>
+          <div class="search-shell">
+            <span data-icon="search"></span>
+            <label class="sr-only" for="library-search">Search your library</label>
+            <input
+              id="library-search"
+              type="search"
+              placeholder="Search titles, authors, or text"
+              autocomplete="off"
+            />
+            <kbd>Ctrl K</kbd>
+          </div>
+          <button id="import-button" class="primary-button" type="button" aria-label="Add books">
+            <span data-icon="plus"></span>
+            <span>Add books</span>
+          </button>
+          <input
+            id="file-input"
+            type="file"
+            accept=".epub,.pdf,.txt,.md,.markdown,.html,.htm,.m4b,.m4a,.mp3,.aac,.ogg,.wav,.aax"
+            multiple
+            hidden
+          />
+        </header>
+
+        <section id="main-content" class="main-content" tabindex="-1"></section>
+      </main>
+
+      <nav class="mobile-nav mobile-only" aria-label="Mobile navigation">
+        <button class="mobile-nav-item is-active" data-route="library" type="button">
+          <span data-icon="library"></span><span>Library</span>
+        </button>
+        <button class="mobile-nav-item" data-route="progress" type="button">
+          <span data-icon="clock"></span><span>Reading</span>
+        </button>
+        <button class="mobile-nav-item" data-route="highlights" type="button">
+          <span data-icon="highlight"></span><span>Notes</span>
+        </button>
+      </nav>
+    </div>
+
+    <section id="reader-view" class="reader-view" hidden aria-label="Reader">
+      <header class="reader-topbar">
+        <div class="reader-title-cluster">
+          <button id="close-reader" class="icon-button" type="button" aria-label="Back to library">
+            <span data-icon="arrow-left"></span>
+          </button>
+          <div class="reader-book-title">
+            <strong id="reader-title">Book title</strong>
+            <span id="reader-location-label">Chapter</span>
+          </div>
+        </div>
+        <div class="reader-progress-summary" aria-live="polite">
+          <span id="reader-progress-label">0%</span>
+          <span class="reader-progress-track"><span id="reader-progress-bar"></span></span>
+        </div>
+        <div class="reader-actions">
+          <button id="reader-search-button" class="icon-button" type="button" aria-label="Search in book">
+            <span data-icon="search"></span>
+          </button>
+          <button id="bookmark-button" class="icon-button" type="button" aria-label="Add bookmark">
+            <span data-icon="bookmark"></span>
+          </button>
+          <button id="reader-toc-button" class="icon-button" type="button" aria-label="Table of contents">
+            <span data-icon="list"></span>
+          </button>
+          <button id="appearance-button" class="icon-button" type="button" aria-label="Reading appearance">
+            <span class="appearance-glyph" aria-hidden="true">Aa</span>
+          </button>
+          <button id="reader-more-button" class="icon-button" type="button" aria-label="More book options">
+            <span data-icon="more"></span>
+          </button>
+        </div>
+      </header>
+
+      <aside id="toc-panel" class="reader-panel toc-panel" hidden aria-label="Table of contents">
+        <div class="panel-heading">
+          <div>
+            <span class="eyebrow">Navigate</span>
+            <h2>Contents</h2>
+          </div>
+          <button class="icon-button panel-close" type="button" aria-label="Close contents">
+            <span data-icon="x"></span>
+          </button>
+        </div>
+        <nav id="toc-list" class="toc-list"></nav>
+      </aside>
+
+      <aside
+        id="appearance-panel"
+        class="reader-panel appearance-panel"
+        hidden
+        aria-label="Reading appearance"
+      >
+        <div class="panel-heading">
+          <div>
+            <span class="eyebrow">Make it yours</span>
+            <h2>Appearance</h2>
+          </div>
+          <button class="icon-button panel-close" type="button" aria-label="Close appearance">
+            <span data-icon="x"></span>
+          </button>
+        </div>
+        <div class="setting-block">
+          <span class="setting-label">Theme</span>
+          <div class="theme-options" role="group" aria-label="Reading theme">
+            <button type="button" data-reader-theme="paper">Paper</button>
+            <button type="button" data-reader-theme="sepia">Sepia</button>
+            <button type="button" data-reader-theme="night">Night</button>
+          </div>
+        </div>
+        <div class="setting-block">
+          <label class="setting-label" for="font-size-range">Text size</label>
+          <div class="range-row">
+            <span>A</span><input id="font-size-range" type="range" min="15" max="30" step="1" /><span>A</span>
+          </div>
+        </div>
+        <div class="setting-block">
+          <label class="setting-label" for="line-height-range">Line spacing</label>
+          <input id="line-height-range" type="range" min="1.35" max="2.1" step="0.05" />
+        </div>
+        <div class="setting-block">
+          <span class="setting-label">Typeface</span>
+          <div class="font-options" role="group" aria-label="Typeface">
+            <button type="button" data-reader-font="serif">Literary</button>
+            <button type="button" data-reader-font="sans">Modern</button>
+          </div>
+        </div>
+        <label class="toggle-row">
+          <span><strong>Focus mode</strong><small>Hide surrounding controls while reading</small></span>
+          <input id="focus-mode-toggle" type="checkbox" role="switch" />
+        </label>
+      </aside>
+
+      <aside id="book-search-panel" class="reader-panel search-panel" hidden aria-label="Search in book">
+        <div class="panel-heading">
+          <div>
+            <span class="eyebrow">Find</span>
+            <h2>Search this book</h2>
+          </div>
+          <button class="icon-button panel-close" type="button" aria-label="Close search">
+            <span data-icon="x"></span>
+          </button>
+        </div>
+        <label class="panel-search">
+          <span data-icon="search"></span>
+          <input
+            id="book-search-input"
+            type="search"
+            placeholder="Type a word or phrase"
+            aria-label="Search this book"
+          />
+        </label>
+        <div id="book-search-results" class="book-search-results"></div>
+      </aside>
+
+      <main id="reader-stage" class="reader-stage" tabindex="0">
+        <div id="reader-content" class="reader-content"></div>
+      </main>
+
+      <footer id="reader-footer" class="reader-footer">
+        <button id="previous-section" class="reader-nav-button" type="button">
+          <span data-icon="chevron-left"></span><span>Previous</span>
+        </button>
+        <span id="page-indicator" class="page-indicator">1 of 1</span>
+        <button id="next-section" class="reader-nav-button" type="button">
+          <span>Next</span><span data-icon="chevron-right"></span>
+        </button>
+      </footer>
+
+      <div id="selection-toolbar" class="selection-toolbar" hidden>
+        <button type="button" data-selection-action="highlight">
+          <span data-icon="highlight"></span> Highlight
+        </button>
+        <button type="button" data-selection-action="note"><span data-icon="note"></span> Note</button>
+        <button type="button" data-selection-action="copy"><span data-icon="copy"></span> Copy</button>
+      </div>
+    </section>
+
+    <dialog id="note-dialog" class="dialog-card">
+      <form method="dialog" id="note-form">
+        <div class="dialog-heading">
+          <div>
+            <span class="eyebrow">Annotation</span>
+            <h2>Add a note</h2>
+          </div>
+          <button class="icon-button" value="cancel" aria-label="Close"><span data-icon="x"></span></button>
+        </div>
+        <blockquote id="note-quote"></blockquote>
+        <label for="note-text">Your note</label>
+        <textarea id="note-text" rows="5" placeholder="What do you want to remember?"></textarea>
+        <div class="dialog-actions">
+          <button class="secondary-button" value="cancel">Cancel</button>
+          <button id="save-note-button" class="primary-button" value="default">Save note</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="collection-dialog" class="dialog-card compact-dialog">
+      <form method="dialog" id="collection-form">
+        <div class="dialog-heading">
+          <div>
+            <span class="eyebrow">Organize</span>
+            <h2>New collection</h2>
+          </div>
+          <button class="icon-button" value="cancel" aria-label="Close"><span data-icon="x"></span></button>
+        </div>
+        <label for="collection-name">Collection name</label>
+        <input id="collection-name" type="text" maxlength="50" placeholder="Weekend reads" required />
+        <div class="dialog-actions">
+          <button class="secondary-button" value="cancel">Cancel</button>
+          <button class="primary-button" value="default">Create</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="settings-dialog" class="dialog-card settings-dialog">
+      <form method="dialog">
+        <div class="dialog-heading">
+          <div>
+            <span class="eyebrow">Reader</span>
+            <h2>Settings</h2>
+          </div>
+          <button class="icon-button" value="cancel" aria-label="Close"><span data-icon="x"></span></button>
+        </div>
+        <section class="settings-section">
+          <div><strong>App appearance</strong><span>Choose how your library looks.</span></div>
+          <div class="theme-options app-theme-options" role="group" aria-label="App theme">
+            <button type="button" data-app-theme="system">System</button>
+            <button type="button" data-app-theme="light">Light</button>
+            <button type="button" data-app-theme="dark">Dark</button>
+          </div>
+        </section>
+        <section class="settings-section">
+          <div>
+            <strong>Metadata export</strong
+            ><span>Creates a sensitive, one-way JSON export. It does not restore book files.</span>
+          </div>
+          <button id="export-library-button" class="secondary-button" type="button">
+            <span data-icon="download"></span> Export metadata
+          </button>
+        </section>
+        <section class="settings-section">
+          <div>
+            <strong>Protected content</strong
+            ><span>AAX files are catalogued but never decrypted or converted.</span>
+          </div>
+          <span class="status-pill neutral"><span data-icon="shield"></span> Protection respected</span>
+        </section>
+        <section class="settings-section danger-zone">
+          <div>
+            <strong>Reset demo library</strong><span>Remove local books and restore the welcome titles.</span>
+          </div>
+          <button id="reset-library-button" class="danger-button" type="button">Reset library</button>
+        </section>
+      </form>
+    </dialog>
+
+    <dialog id="book-menu-dialog" class="dialog-card compact-dialog">
+      <form method="dialog">
+        <div class="dialog-heading">
+          <div>
+            <span class="eyebrow">Book options</span>
+            <h2 id="book-menu-title">Book</h2>
+          </div>
+          <button class="icon-button" value="cancel" aria-label="Close"><span data-icon="x"></span></button>
+        </div>
+        <div class="menu-list">
+          <button id="book-menu-details" type="button">
+            <span data-icon="info"></span> Publication details
+          </button>
+          <button id="book-menu-collection" type="button">
+            <span data-icon="folder"></span> Add to collection
+          </button>
+          <button id="book-menu-export" type="button">
+            <span data-icon="download"></span> Export annotations
+          </button>
+          <button id="book-menu-delete" class="danger-text" type="button">
+            <span data-icon="trash"></span> Remove from library
+          </button>
+        </div>
+      </form>
+    </dialog>
+
+    <div id="toast-region" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="./vendor/jszip.min.js"></script>
+    <script src="./vendor/marked.umd.js"></script>
+    <script type="module" src="./src/app.js"></script>
+  </body>
+</html>

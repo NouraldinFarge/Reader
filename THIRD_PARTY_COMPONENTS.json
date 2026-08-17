@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schemaVersion": 1,
+  "verifiedOn": "2026-08-17",
+  "projectLicenseStatus": "not-selected-owner-approval-required",
+  "components": [
+    {
+      "name": "JSZip",
+      "package": "jszip",
+      "version": "3.10.1",
+      "usage": "vendored-runtime-and-test-fixture-tool",
+      "upstream": "https://github.com/Stuk/jszip",
+      "sourceTarball": "https://registry.npmjs.org/jszip/-/jszip-3.10.1.tgz",
+      "sourceTarballIntegrity": "sha512-xXDvecyTpGLrqFrvkrUSoxxfJI5AH7U8zxxtVclpsUtMCq4JQ290LY8AW5c7Ggnr/Y/oK+bQMbqK2qmtk3pN4g==",
+      "sourceTarballSha256": "5117f4a2a645aeb307bf3b829c575ad58135cc97e75291e594532ab5b5b21b23",
+      "licenseExpression": "MIT OR GPL-3.0-or-later",
+      "vendoredFiles": [
+        {
+          "path": "app/vendor/jszip.min.js",
+          "sha256": "acc7e41455a80765b5fd9c7ee1b8078a6d160bbbca455aeae854de65c947d59e"
+        }
+      ],
+      "licenseFile": {
+        "path": "app/vendor/licenses/JSZip-LICENSE.md",
+        "sha256": "566c953c6090b1218ca6217dd7359d45dde46581968586dc607d59a78af6a9c4"
+      }
+    },
+    {
+      "name": "Marked",
+      "package": "marked",
+      "version": "18.0.9",
+      "usage": "vendored-runtime",
+      "upstream": "https://github.com/markedjs/marked",
+      "sourceTarball": "https://registry.npmjs.org/marked/-/marked-18.0.9.tgz",
+      "sourceTarballIntegrity": "sha512-/Sa4qiiHZxf0/FQdBBowr9q4r10krCwMvpK48FUBdXdUXScDxiQGR9zCPrFgRVR5LU3iySOiIjy09ZQvADir1w==",
+      "sourceTarballSha256": "3017275f02c3bb33d668a892566f47c129da751292f29cfcaf45bded787d0dc6",
+      "licenseExpression": "MIT",
+      "vendoredFiles": [
+        {
+          "path": "app/vendor/marked.umd.js",
+          "sha256": "ba65f1c8948e6b01321399800843e9048b31e1c197652d4b0fafae840b30e32b"
+        }
+      ],
+      "licenseFile": {
+        "path": "app/vendor/licenses/Marked-LICENSE.md",
+        "sha256": "8e3a3f82f59a60958f56ca08f445647c32a4733dc7ca6c2c46f6eb898471ab9c"
+      }
+    },
+    {
+      "name": "Mozilla PDF.js",
+      "package": "pdfjs-dist",
+      "version": "6.2.108",
+      "build": "0365cbde0",
+      "usage": "vendored-runtime",
+      "upstream": "https://github.com/mozilla/pdf.js",
+      "sourceTarball": "https://registry.npmjs.org/pdfjs-dist/-/pdfjs-dist-6.2.108.tgz",
+      "sourceTarballIntegrity": "sha512-YxFb+SQcodN2rnX9Tn3dHYlqfb7NjlzzfONPpJd+AKoKtUjEdevTfbC07d5TcczzOK6261auRkP/M8OBHs9vFQ==",
+      "sourceTarballSha256": "b3e68d5cda70551a90b3f771419d379e20fc788ce056fa32de73608e01df47f4",
+      "licenseExpression": "Apache-2.0",
+      "vendoredFiles": [
+        {
+          "path": "app/vendor/pdfjs/pdf.min.mjs",
+          "sha256": "e0be3863c23c8af2305b16548febd58e7f8874a460253317d7771cddbc1c0f6d"
+        },
+        {
+          "path": "app/vendor/pdfjs/pdf.worker.min.mjs",
+          "sha256": "0613f41490dd6aaceed7a93fbbd38c85e6d6aa60474b6588c6e7709cfbe18cb3"
+        }
+      ],
+      "licenseFile": {
+        "path": "app/vendor/licenses/PDFjs-LICENSE.txt",
+        "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+      }
+    },
+    {
+      "name": "Tauri runtime",
+      "package": "tauri",
+      "version": "2.11.5",
+      "usage": "desktop-runtime",
+      "upstream": "https://github.com/tauri-apps/tauri",
+      "licenseExpression": "Apache-2.0 OR MIT",
+      "lockfile": "src-tauri/Cargo.lock"
+    },
+    {
+      "name": "Tauri single-instance plugin",
+      "package": "tauri-plugin-single-instance",
+      "version": "2.4.3",
+      "usage": "desktop-runtime",
+      "upstream": "https://github.com/tauri-apps/plugins-workspace",
+      "licenseExpression": "Apache-2.0 OR MIT",
+      "lockfile": "src-tauri/Cargo.lock"
+    },
+    {
+      "name": "Tauri CLI",
+      "package": "@tauri-apps/cli",
+      "version": "2.11.4",
+      "usage": "build-tool",
+      "upstream": "https://github.com/tauri-apps/tauri",
+      "sourceTarballIntegrity": "sha512-R8xGtMpwyetawSqm9kYOuMmEqkhUbvcUy8n0aNXIxollKBLESUu5f4Fx+64hgASYm1H+jSWq6jCW6zqTnH6hqQ==",
+      "licenseExpression": "Apache-2.0 OR MIT",
+      "lockfile": "pnpm-lock.yaml"
+    },
+    {
+      "name": "Playwright",
+      "package": "playwright",
+      "version": "1.62.1",
+      "usage": "browser-test-tool",
+      "upstream": "https://github.com/microsoft/playwright",
+      "sourceTarballIntegrity": "sha512-0M+L3LAD8/nm554LOla9Ayx0j0tmFZ0FBcoQ7F1VuVHpM/XpiC8RcDzBQB8W5+hA8L22THxELzeF+2WcUzvcLg==",
+      "licenseExpression": "Apache-2.0",
+      "lockfile": "pnpm-lock.yaml"
+    },
+    {
+      "name": "axe-core Playwright integration",
+      "package": "@axe-core/playwright",
+      "version": "4.13.0",
+      "usage": "accessibility-test-tool",
+      "upstream": "https://github.com/dequelabs/axe-core-npm",
+      "sourceTarballIntegrity": "sha512-6YLx+kxXu5GJceG4ozFg+33a2EMTdjYwWGloJ3sb9Kta5pp+ZNS53uxGVog5JetIY8s++P5UrtX+cri+u0VAVg==",
+      "licenseExpression": "MPL-2.0",
+      "lockfile": "pnpm-lock.yaml"
+    }
+  ]
+}

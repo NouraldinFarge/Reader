@@ -1,0 +1,126 @@
+name: Quality gates
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  web-quality:
+    name: Web, parser, persistence, and accessibility
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
+        with:
+          run_install: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install frozen dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check formatting, lint, facts, links, and vendored files
+        run: |
+          pnpm format:check
+          pnpm lint
+          pnpm verify:facts
+          pnpm verify:links
+          pnpm verify:vendor
+          pnpm verify:private-data
+
+      - name: Run unit and coverage gates
+        run: |
+          pnpm test:unit
+          pnpm test:coverage
+
+      - name: Install the pinned Chromium runtime
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Run browser, persistence, privacy, and accessibility scenarios
+        run: pnpm test:e2e
+
+      - name: Scan JavaScript dependencies
+        run: |
+          pnpm audit --prod --audit-level high
+          pnpm audit --audit-level high
+
+      - name: Generate SPDX SBOM
+        run: pnpm generate:sbom
+
+      - name: Preserve bounded verification evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: reader-web-verification
+          path: |
+            test-results/browser-report.json
+            test-results/coverage/coverage-summary.json
+            sbom/*.spdx.json
+          if-no-files-found: warn
+          retention-days: 7
+
+  windows-shell:
+    name: Rust shell and unsigned NSIS candidate
+    runs-on: windows-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
+        with:
+          run_install: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@4360b52568e2003a75bf9bc1d59f33a8e3fc893c # stable, verified 2026-08-17
+        with:
+          targets: x86_64-pc-windows-msvc
+          components: clippy,rustfmt
+
+      - name: Install cargo-audit
+        uses: taiki-e/install-action@e43a5023a747770bfcb71ae048541a681714b951 # v2.62.33
+        with:
+          tool: cargo-audit
+
+      - name: Install frozen dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Verify the Windows dependency graph and Rust code
+        run: |
+          pnpm verify:windows-dependencies
+          pnpm scan:cargo
+          pnpm test:rust
+
+      - name: Build an unsigned NSIS verification candidate
+        run: pnpm tauri build --bundles nsis
+
+      - name: Preserve the unsigned CI candidate briefly
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: reader-unsigned-nsis-verification-only
+          path: src-tauri/target/release/bundle/nsis/*.exe
+          if-no-files-found: error
+          retention-days: 3

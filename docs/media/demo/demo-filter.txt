@@ -1,0 +1,1 @@
+scale=1440:900:force_original_aspect_ratio=decrease,pad=1440:900:(ow-iw)/2:(oh-ih)/2:color=0x101612,fps=30,fade=t=in:st=0:d=0.8,fade=t=out:st=74:d=1,format=yuv420p

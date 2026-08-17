@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Reader app icon">
+  <defs>
+    <linearGradient id="background" x1="34" y1="28" x2="222" y2="228" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#253048"/>
+      <stop offset="1" stop-color="#111725"/>
+    </linearGradient>
+    <linearGradient id="page" x1="74" y1="54" x2="184" y2="209" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fffaf0"/>
+      <stop offset="1" stop-color="#e8ddc6"/>
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="58" fill="url(#background)"/>
+  <path d="M52 62c0-10 8-18 18-18h52c13 0 25 6 33 16 8-10 20-16 33-16h1c8 0 15 7 15 15v135c0 9-8 17-17 16-12-1-23 2-32 10-9-8-20-11-32-10H70c-10 0-18-8-18-18V62Z" fill="#d79b56" opacity=".24"/>
+  <path d="M62 62c0-6 5-11 11-11h46c14 0 27 7 35 18v133c-9-9-21-14-34-14H73c-6 0-11-5-11-11V62Z" fill="url(#page)"/>
+  <path d="M194 62c0-6-5-11-11-11h-2c-11 0-21 4-27 12v139c9-9 21-14 34-14h-5c6 0 11-5 11-11V62Z" fill="#f5ead7"/>
+  <path d="M154 69v133" stroke="#c8b89d" stroke-width="5" stroke-linecap="round"/>
+  <path d="M81 85h53M81 106h53M81 127h41M81 148h51" stroke="#9d8463" stroke-width="7" stroke-linecap="round" opacity=".72"/>
+  <path d="M171 82h11M171 104h11M171 126h11" stroke="#b18048" stroke-width="7" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,13 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "The sole Reader webview receives core defaults with explicit denials for creating windows, webviews, or a separate developer-tools surface.",
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "core:window:deny-create",
+    "core:webview:deny-create-webview",
+    "core:webview:deny-create-webview-window",
+    "core:webview:deny-internal-toggle-devtools"
+  ]
+}

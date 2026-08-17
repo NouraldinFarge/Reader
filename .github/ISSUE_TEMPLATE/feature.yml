@@ -1,0 +1,28 @@
+name: Feature request
+description: Propose a focused improvement within Reader's authorized-content scope.
+title: '[Feature]: '
+labels: [enhancement, needs-triage]
+body:
+  - type: markdown
+    attributes:
+      value: Reader is not a storefront, downloader, cloud service, DRM utility, or media converter.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Reader problem
+      description: What reading or listening problem would this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed outcome
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy check
+      options:
+        - label: This request contains no publication files, private annotations, activation data, account details, personal paths, or credentials.
+          required: true

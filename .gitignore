@@ -1,0 +1,82 @@
+# JavaScript dependencies and package-manager state
+node_modules/
+.pnpm-store/
+
+# Rust and Tauri generated output
+target/
+src-tauri/target/
+dist/
+
+# Test, coverage, trace, and browser output
+test-results/
+playwright-report/
+coverage/
+blob-report/
+*.trace.zip
+
+# Local release and installer output
+release-artifacts/
+artifacts/
+installers/
+*.exe
+*.msi
+*.msix
+*.appx
+*.appxbundle
+*.pdb
+*.dmp
+*.map
+
+# Logs, caches, and temporary files
+*.log
+*.cache
+*.tmp
+*.temp
+*.bak
+*.swp
+.cache/
+.eslintcache
+.stylelintcache
+.DS_Store
+Thumbs.db
+
+# Local application data, publications, and exports
+user-data/
+imports/
+annotations/
+exports/
+support-bundles/
+local-settings/
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+*.epub
+*.pdf
+*.aax
+*.m4a
+*.m4b
+*.mp3
+*.aac
+*.ogg
+*.wav
+
+# Secrets, signing material, and machine-local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+*.jks
+*.keystore
+*.mobileprovision
+*.snk
+*.cer
+*.crt
+credentials*.json
+secrets*.json
+settings.local.*
+.npmrc.local

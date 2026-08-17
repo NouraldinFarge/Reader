@@ -1,0 +1,18 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "ignoreFiles": ["app/vendor/**", "src-tauri/target/**", "test-results/**"],
+  "rules": {
+    "alpha-value-notation": "number",
+    "color-function-alias-notation": null,
+    "color-function-notation": "legacy",
+    "color-hex-length": null,
+    "custom-property-empty-line-before": null,
+    "declaration-block-no-redundant-longhand-properties": null,
+    "media-feature-range-notation": null,
+    "no-descending-specificity": null,
+    "property-no-deprecated": null,
+    "property-no-vendor-prefix": null,
+    "selector-class-pattern": null,
+    "value-keyword-case": null
+  }
+}

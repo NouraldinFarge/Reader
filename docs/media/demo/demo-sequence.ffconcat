@@ -1,0 +1,16 @@
+ffconcat version 1.0
+file 'reader-alpha4-demo-thumbnail.png'
+duration 12
+file '../screenshots/library-overview.png'
+duration 10
+file '../screenshots/focused-reading.png'
+duration 13
+file '../screenshots/notes-and-search.png'
+duration 11
+file '../screenshots/appearance-controls.png'
+duration 10
+file '../screenshots/pdf-view.png'
+duration 12
+file '../screenshots/protected-content-boundary.png'
+duration 13
+file '../screenshots/protected-content-boundary.png'

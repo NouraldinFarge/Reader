@@ -1,0 +1,9 @@
+app/vendor/
+src-tauri/gen/
+src-tauri/target/
+node_modules/
+test-results/
+release-artifacts/
+pnpm-lock.yaml
+docs/release/sbom*.json
+sbom/
