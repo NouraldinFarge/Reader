@@ -16,6 +16,7 @@ Reader `0.1.0-alpha.4` is a Windows-first, local-first reading-library prereleas
 - Prevented stale callbacks across deletion, library reset, reader close, renderer destruction, and rapid PDF/audio transitions from recreating records or overwriting a newer reader.
 - Added a database existence guard plus explicit IndexedDB transaction abort handling for synchronous quota-style failures.
 - Fixed browser-discovered contrast, accessible-name, sanitizer-root, and asynchronous reader-transition defects.
+- Kept dialog entry motion while removing whole-dialog opacity animation, preventing transient sub-threshold text and destructive-control contrast during accessibility scans and real use.
 
 ## Security and parser changes
 
