@@ -6,7 +6,19 @@ Reader is a Windows prerelease for reading authorized EPUB, PDF, text, and audio
 
 > **Repository status:** The source repository is public by owner decision. `0.1.0-alpha.4` remains an unreleased prerelease with no supported public binary download; the installer is unsigned and has not completed the clean-Windows release matrix.
 
-![Reader library overview with three synthetic demo titles](docs/media/screenshots/library-overview.png)
+![Reader library overview with three synthetic demo titles](docs/media/screenshots/library-overview.jpg)
+
+## Product tour
+
+[![Reader product-tour thumbnail showing the synthetic local library](docs/media/demo/reader-alpha4-demo-thumbnail.jpg)](docs/media/demo/reader-alpha4-demo.mp4)
+
+**[Watch the 75-second repository demo](docs/media/demo/reader-alpha4-demo.mp4)** · [Read the timed transcript](docs/DEMO_SCRIPT.md) · [Review media provenance and dimensions](docs/media/README.md)
+
+| Focused reading                                                                                                                   | Local PDF rendering                                                                                   | Protected-content boundary                                                                                                                                       |
+| --------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [![Reader focused reading view in sepia](docs/media/screenshots/focused-reading.jpg)](docs/media/screenshots/focused-reading.jpg) | [![Reader canvas PDF view](docs/media/screenshots/pdf-view.jpg)](docs/media/screenshots/pdf-view.jpg) | [![Reader metadata-only protected-content screen](docs/media/screenshots/protected-content-boundary.jpg)](docs/media/screenshots/protected-content-boundary.jpg) |
+
+Every frame uses the real `0.1.0-alpha.4` UI with repository-generated synthetic content. The demo has no audio; the linked transcript supplies the timed narration and captions.
 
 ## Why Reader
 
@@ -105,6 +117,7 @@ pnpm test:unit
 pnpm test:coverage
 pnpm test:e2e
 pnpm verify:vendor
+pnpm verify:media
 pnpm verify:facts
 pnpm verify:links
 pnpm verify:private-data
@@ -122,7 +135,7 @@ pnpm verify:windows-dependencies
 pnpm build:windows:release
 ```
 
-The resulting local NSIS candidate is intentionally unsigned. There is no approved public download or release URL. A stable public binary release requires Authenticode signing and a clean Windows 10/11 install/upgrade/uninstall matrix.
+The resulting local NSIS candidate is intentionally unsigned. There is no supported public download or release URL; CI may retain a short-lived unsigned verification-only candidate. A supported public binary release requires Authenticode signing and a clean Windows 10/11 install/upgrade/uninstall matrix.
 
 ## Known limitations
 

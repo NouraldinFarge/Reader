@@ -1,10 +1,10 @@
 # Reader 0.1.0-alpha.4 release-candidate notes
 
 Date: August 17, 2026  
-Status: public source repository; no public binary release
+Status: public source repository; no supported public binary release
 
 Repository URL: <https://github.com/NouraldinFarge/Reader>
-Release URL: not available; no release approved
+Release URL: not available; no supported release approved
 
 ## Release scope
 
@@ -47,4 +47,4 @@ Reader `0.1.0-alpha.4` is a Windows-first, local-first reading-library prereleas
 - GitHub private vulnerability reporting is enabled for the public source repository. Any tag, GitHub Release, or public binary download still requires separate review and approval.
 - Manual screen-reader, Windows high-contrast, 400% zoom, and packaged audio/PDF verification remain incomplete.
 
-No public binary release should be created from these notes until every blocker is closed and the facts ledger is regenerated.
+No supported public binary release should be created from these notes until every blocker is closed and the facts ledger is regenerated.
