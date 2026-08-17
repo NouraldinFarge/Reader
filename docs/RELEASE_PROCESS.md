@@ -34,7 +34,7 @@ pnpm build:windows:release
 pnpm verify:windows-binary -- --file <path-to-reader.exe>
 ```
 
-The release builder remaps the workspace, Cargo home, and Windows user-profile roots before compilation, uses the project-local Tauri tool cache, and rejects an executable that still contains the build user's profile path. The PE verifier requires subsystem `2` (`Windows GUI`). This is the binary property that prevents a console from appearing during normal executable or shortcut launch. The desktop-shell tests and two-launch smoke separately verify one-window/single-instance behavior.
+The release builder remaps the workspace, Cargo home, and Windows user-profile roots before compilation, uses the project-local Tauri tool cache, and rejects an executable that still contains the build user's profile path. The PE verifier requires subsystem `2` (`Windows GUI`). This is the binary property that prevents a console from appearing during normal executable or shortcut launch. The desktop-shell tests verify the one-window policy statically; the final candidate must also pass the separate two-launch smoke in an interactive Windows user session.
 
 ## 3. Create immutable source and candidate artifacts
 

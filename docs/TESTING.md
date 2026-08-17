@@ -77,7 +77,9 @@ The Rust gate runs fmt, clippy with warnings denied, locked check, and tests. Th
 
 ## Native and packaged-app evidence
 
-The alpha.4 shell was compiled as a Windows GUI-subsystem executable. Directly launching the exact release executable opened one Reader window with no direct terminal descendant; a second launch returned focus to that same window and left one Reader process. The NSIS current-user installer also built successfully. Exact artifact hashes and unsigned Authenticode status are recorded in the release-candidate manifest and report.
+The alpha.4 shell was compiled as a Windows GUI-subsystem executable. Source tests assert one manually created `main` window, first-registered single-instance focus, native popup denial, and no shell/process spawning; PE verification independently confirms Windows GUI subsystem `2`. The NSIS current-user installer also built successfully. Exact artifact hashes and unsigned Authenticode status are recorded in the release-candidate manifest and report.
+
+The interactive packaged-app smoke is still pending. The restricted build identity cannot initialize the signed-in Windows user's WebView2 profile, so command-launched results from that identity are not valid evidence for visible-window or second-launch behavior. Run the exact candidate in an interactive Windows user session before publication.
 
 No terminal is expected when launching `reader.exe` or an installed shortcut. `pnpm dev` and `pnpm tauri dev` are developer commands and intentionally retain the terminal that invoked them.
 

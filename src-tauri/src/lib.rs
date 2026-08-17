@@ -49,11 +49,19 @@ pub fn run() {
                 // The window is created here (rather than automatically from
                 // tauri.conf.json) so the native WebView can reject every
                 // popup request before any application JavaScript runs.
-                tauri::WebviewWindowBuilder::from_config(app, main_config)?
-                    .devtools(false)
-                    .on_navigation(is_reader_navigation)
-                    .on_new_window(|_url, _features| tauri::webview::NewWindowResponse::Deny)
-                    .build()?;
+                let main_window =
+                    tauri::WebviewWindowBuilder::from_config(app.handle(), main_config)?
+                        .visible(true)
+                        .focused(true)
+                        .devtools(false)
+                        .on_navigation(is_reader_navigation)
+                        .on_new_window(|_url, _features| tauri::webview::NewWindowResponse::Deny)
+                        .build()?;
+
+                // Make startup deterministic even if the platform webview is
+                // initialized hidden while its native controller is attached.
+                main_window.show()?;
+                main_window.set_focus()?;
             }
 
             Ok(())

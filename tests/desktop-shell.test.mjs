@@ -22,8 +22,13 @@ test('the desktop shell declares exactly one manually-created main window', () =
   assert.equal(config.app.windows.length, 1);
   assert.equal(config.app.windows[0].label, 'main');
   assert.equal(config.app.windows[0].create, false);
+  assert.equal(config.app.windows[0].visible, true);
   assert.equal(config.app.windows[0].devtools, false);
-  assert.match(lib, /WebviewWindowBuilder::from_config\(app, main_config\)/);
+  assert.match(lib, /WebviewWindowBuilder::from_config\(app\.handle\(\), main_config\)/);
+  assert.match(lib, /\.visible\(true\)/);
+  assert.match(lib, /\.focused\(true\)/);
+  assert.match(lib, /main_window\.show\(\)\?/);
+  assert.match(lib, /main_window\.set_focus\(\)\?/);
   assert.equal((lib.match(/\.build\(\)\?/g) ?? []).length, 1);
 });
 

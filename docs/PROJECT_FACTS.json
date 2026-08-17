@@ -70,10 +70,10 @@
       "statementsPercent": 99.19
     },
     "cleanWindowsMatrix": "not-run",
-    "packagedApplicationMatrix": "passed-local-executable-smoke"
+    "packagedApplicationMatrix": "not-run-requires-interactive-windows-user-session"
   },
   "release": {
-    "sourceArchive": "reader-v0.1.0-alpha.4-20260817-candidate-source.zip",
+    "sourceArchive": "reader-v0.1.0-alpha.4-20260817-candidate2-source.zip",
     "installer": "Reader_0.1.0-alpha.4_x64-setup.exe",
     "checksumsFile": "CHECKSUMS.sha256",
     "sbom": "sbom/reader-v0.1.0-alpha.4.spdx.json",
@@ -85,6 +85,7 @@
     "PDF content is canvas-only, without a selectable text layer, document search, annotations, or complete screen-reader access.",
     "Fixed-layout and protected EPUB, EPUB CFI locations, cross-device sync, and cloud backup are not implemented.",
     "Audio codec behavior depends on the installed Windows WebView2 media engine.",
+    "The packaged one-window, second-launch, and no-console smoke must still run in an interactive Windows user session; the restricted build identity cannot initialize the signed-in user's WebView2 profile.",
     "The candidate has not completed a clean Windows 10/11 install, upgrade, uninstall, and residual-data matrix.",
     "The installer is unsigned; no signing certificate or signing authorization has been provided."
   ],
