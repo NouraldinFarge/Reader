@@ -87,18 +87,19 @@ function checksumFromIntegrity(integrity) {
 const packages = [];
 const relationships = [];
 const rootId = 'SPDXRef-Package-Reader';
+const projectLicense = normalizeLicense(packageJson.license);
 packages.push({
   SPDXID: rootId,
   name: packageJson.name,
   versionInfo: packageJson.version,
   downloadLocation: 'NOASSERTION',
   filesAnalyzed: false,
-  licenseConcluded: 'NOASSERTION',
-  licenseDeclared: 'NOASSERTION',
-  copyrightText: 'NOASSERTION',
+  licenseConcluded: projectLicense,
+  licenseDeclared: projectLicense,
+  copyrightText: `Copyright (c) 2026 ${packageJson.author}`,
   primaryPackagePurpose: 'APPLICATION',
   comment:
-    'Project source license is intentionally not selected; owner approval is required before publication. package.json remains private to prevent npm publication.',
+    'Reader is licensed under MIT. package.json remains private to prevent accidental npm publication.',
 });
 
 const integrities = parsePnpmIntegrities(pnpmLock);
@@ -220,7 +221,7 @@ const document = {
   documentNamespace: `https://spdx.org/spdxdocs/reader-${packageJson.version}-${namespaceSeed.slice(0, 24)}`,
   creationInfo: {
     created: new Date().toISOString().replace(/\.\d{3}Z$/, 'Z'),
-    creators: ['Tool: Reader scripts/generate-sbom.mjs', 'Organization: Reader contributors'],
+    creators: ['Tool: Reader scripts/generate-sbom.mjs', `Person: ${packageJson.author}`],
   },
   documentComment:
     `Exact dependency inventory generated from pnpm-lock.yaml (SHA-256 ${hash(pnpmLock)}), ` +

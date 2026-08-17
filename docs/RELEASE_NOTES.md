@@ -1,8 +1,8 @@
 # Reader 0.1.0-alpha.4 release-candidate notes
 
 Date: August 17, 2026  
-Status: private local candidate; not published  
-Repository URL: not available; no remote approved  
+Status: private GitHub staging candidate; not publicly released  
+Repository URL: <https://github.com/NouraldinFarge/Reader> (private staging)  
 Release URL: not available; no release approved
 
 ## Release scope
@@ -30,19 +30,19 @@ Reader `0.1.0-alpha.4` is a Windows-first, local-first reading-library prereleas
 - Automated result: 40/40 Node tests and seven/seven Chromium scenario groups passed; six axe scans had zero serious/critical findings; high-risk modules reached 99.19% line coverage and 89.67% branch coverage.
 - JavaScript audits reported no known advisories at the tested threshold. RustSec reported no vulnerability entries and 17 cross-platform warnings; GTK/GLib families were confirmed absent from the Windows graph.
 - Preserved Windows GUI-subsystem, one-window, native popup-denial, restricted-navigation, disabled-devtools, and single-instance behavior.
+- Applied the owner-confirmed MIT license and provenance statement and prepared an honest sanitized-import Git history.
 
 ## Breaking or changed expectations
 
 - JSON export wording now states that exports are sensitive, one-way metadata and are not restorable library backups.
 - Windows bundle scope is explicitly NSIS; no portable distribution is claimed or tested.
-- This is another alpha candidate because clean-machine, signing, licensing, and human accessibility gates remain incomplete.
+- This is another alpha candidate because clean-machine, signing, and human accessibility gates remain incomplete.
 
 ## Publication blockers
 
-- No owner-approved project-source license.
 - Unsigned installer; no signing certificate use approved.
 - No clean Windows 10/11 install, offline launch, persistence, upgrade, uninstall, and residual-data matrix.
-- No public repository/remote, security advisory route, tag, release, or download has been approved.
+- Repository visibility remains private; the private vulnerability-reporting route, any tag/release, and any public download still require verification or approval.
 - Manual screen-reader, Windows high-contrast, 400% zoom, and packaged audio/PDF verification remain incomplete.
 
 No public release should be created from these notes until every blocker is closed and the facts ledger is regenerated.

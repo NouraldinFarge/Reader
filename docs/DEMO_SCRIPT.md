@@ -13,7 +13,7 @@ Target length: 75 seconds. Use only the real `0.1.0-alpha.4` UI and synthetic de
 | 40–51s | Return to the library and open the synthetic PDF fixture            | “PDF pages use a local matching PDF.js worker with scripting and evaluation disabled.”                                                                             |
 | 51–61s | Show Add books, then the generic protected-content boundary fixture | “EPUB and markup imports are bounded and sanitized. Protected AAX remains metadata-only—no activation data, decryption, conversion, playback, or payload storage.” |
 | 61–70s | Open settings and pause on the export warning                       | “Exports can contain sensitive reading metadata and are clearly labeled one-way, not restorable backups.”                                                          |
-| 70–75s | Return to the overview/title card                                   | “This private alpha is test-backed, but licensing, signing, and clean-machine validation still gate publication.”                                                  |
+| 70–75s | Return to the overview/title card                                   | “This private alpha is test-backed and MIT-licensed, but signing and clean-machine validation still gate publication.”                                             |
 
 ## Capture checklist
 

@@ -77,7 +77,7 @@ The Rust gate runs fmt, clippy with warnings denied, locked check, and tests. Th
 
 ## Native and packaged-app evidence
 
-The earlier alpha.3 shell was compiled as a Windows GUI-subsystem executable and a hidden two-launch process/window smoke check left one Reader process/window. The same source boundary is regression-tested in alpha.4. Final alpha.4 packaged checks and installer details are recorded in [Manual verification](MANUAL_VERIFICATION.md) and the local release report when completed.
+The alpha.4 shell was compiled as a Windows GUI-subsystem executable. Directly launching the exact release executable opened one Reader window with no direct terminal descendant; a second launch returned focus to that same window and left one Reader process. The NSIS current-user installer also built successfully. Exact artifact hashes and unsigned Authenticode status are recorded in the release-candidate manifest and report.
 
 No terminal is expected when launching `reader.exe` or an installed shortcut. `pnpm dev` and `pnpm tauri dev` are developer commands and intentionally retain the terminal that invoked them.
 

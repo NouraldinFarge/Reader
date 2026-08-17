@@ -31,7 +31,7 @@
     "active": true,
     "targets": ["nsis"],
     "category": "Education",
-    "shortDescription": "A private, local-first reading library",
+    "shortDescription": "A local-first reading library",
     "longDescription": "Read EPUB, PDF, text, and unprotected audio in a focused local library.",
     "icon": ["icons/32x32.png", "icons/128x128.png", "icons/128x128@2x.png", "icons/icon.ico"],
     "windows": {

@@ -23,8 +23,8 @@ const manifestPath = resolve(directory, 'build-manifest.json');
 const manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
 assert.equal(manifest.version, packageJson.version);
 assert.equal(manifest.version, facts.product.developmentVersion);
-assert.equal(manifest.publicationStatus, 'private-local-candidate');
-assert.equal(manifest.projectLicense, 'not-selected-owner-approval-required');
+assert.equal(manifest.publicationStatus, 'private-github-staging-candidate');
+assert.equal(manifest.projectLicense, 'MIT');
 
 function sha256(buffer) {
   return createHash('sha256').update(buffer).digest('hex');

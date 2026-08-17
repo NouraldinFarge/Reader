@@ -20,7 +20,7 @@ All notable changes are recorded here. Reader uses Semantic Versioning while pre
 
 - Added frozen pnpm dependency resolution, exact quality-tool versions, conventional lint/format gates, high-risk coverage thresholds, seven real Chromium scenario groups, six axe scans, advisory checks, vendor hashing, private-data scanning, SPDX generation, pinned CI actions, Dependabot configuration, and privacy-safe issue templates.
 - Added canonical facts/recruiter copy, release/testing/security/architecture evidence, AI-assistance accountability, support guidance, naming review, demo script, and shipped/planned/rejected roadmap separation.
-- Kept the candidate private and unsigned. Project licensing, Authenticode use, clean-machine validation, and every public-surface action remain owner-controlled blockers.
+- Applied the owner-confirmed MIT license and provenance statement while keeping the candidate in private GitHub staging. Authenticode use, clean-machine validation, and public-release actions remain gated.
 
 ## 0.1.0-alpha.3 — 2026-08-16
 

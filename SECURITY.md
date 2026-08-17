@@ -1,10 +1,10 @@
 # Security policy
 
-Reader `0.1.0-alpha.4` is a private, unpublished prerelease. It has no public security-support channel or supported public release line yet.
+Reader `0.1.0-alpha.4` is a private GitHub staging prerelease. It has no supported public release line or public download channel yet.
 
 ## Reporting privately
 
-Do not open a public issue for a suspected vulnerability. If this private source was shared with you through an authorized channel, report the issue through that same private channel and include only the minimum details needed to reproduce it. A private GitHub security-advisory route must be configured before any repository is made public.
+Do not open a public issue for a suspected vulnerability. If this private source was shared with you through an authorized channel, report the issue through that same private channel and include only the minimum details needed to reproduce it. GitHub private vulnerability reporting and the repository security-advisory route must be verified before visibility changes.
 
 Never attach or paste:
 
@@ -41,4 +41,4 @@ The prior private audit named `CVE-2026-16633` for the old PDF.js build. Searche
 - The canvas-only PDF view lacks an accessible text layer.
 - Browser and synthetic-input testing cannot establish safety for every malformed publication or platform codec.
 - The local NSIS candidate is unsigned; no stable public release should be offered before Authenticode and clean Windows install/upgrade/uninstall verification.
-- Reader's project source has no owner-approved license and must remain private until that decision is made.
+- Source availability does not make the unsigned installer a supported release; binary distribution remains gated by signing and clean-Windows validation.

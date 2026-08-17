@@ -4,7 +4,13 @@
   "private": true,
   "type": "module",
   "packageManager": "pnpm@11.19.0",
-  "description": "A private, local-first desktop reading library for EPUB, PDF, text, audio, and protected AAX metadata.",
+  "description": "A local-first desktop reading library for EPUB, PDF, text, audio, and protected AAX metadata.",
+  "author": "Nouraldin Farge",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NouraldinFarge/Reader.git"
+  },
   "scripts": {
     "dev": "node scripts/serve.mjs",
     "test": "npm run test:unit",

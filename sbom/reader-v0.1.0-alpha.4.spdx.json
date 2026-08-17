@@ -3,15 +3,15 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "Reader 0.1.0-alpha.4 dependency SBOM",
-  "documentNamespace": "https://spdx.org/spdxdocs/reader-0.1.0-alpha.4-3881249f7f25dfa641560a15",
+  "documentNamespace": "https://spdx.org/spdxdocs/reader-0.1.0-alpha.4-801ec2254b769f7673de0ca5",
   "creationInfo": {
-    "created": "2026-08-17T15:41:13Z",
+    "created": "2026-08-17T17:06:37Z",
     "creators": [
       "Tool: Reader scripts/generate-sbom.mjs",
-      "Organization: Reader contributors"
+      "Person: Nouraldin Farge"
     ]
   },
-  "documentComment": "Exact dependency inventory generated from pnpm-lock.yaml (SHA-256 a5f3a204419c2027bc7ef24058321460bb2a27a8febe09b77990c7532f8d1c1c), src-tauri/Cargo.lock (SHA-256 1cc43b1985708d4b85ff45925e4d1313b01515c2ccb23f780eecf5291101a3da), and THIRD_PARTY_COMPONENTS.json (SHA-256 65c89a38522df6c3072b8cd77239b7b533b1397277504010c1dde8a3f9856718). Cargo entries include the cross-platform lock; the release manifest separately records the Windows-resolved build graph.",
+  "documentComment": "Exact dependency inventory generated from pnpm-lock.yaml (SHA-256 a5f3a204419c2027bc7ef24058321460bb2a27a8febe09b77990c7532f8d1c1c), src-tauri/Cargo.lock (SHA-256 1cc43b1985708d4b85ff45925e4d1313b01515c2ccb23f780eecf5291101a3da), and THIRD_PARTY_COMPONENTS.json (SHA-256 0a98c78e9f9e58e2e2e129c168bd83f944be8828b3c8bcbcca86c4392fd16742). Cargo entries include the cross-platform lock; the release manifest separately records the Windows-resolved build graph.",
   "packages": [
     {
       "SPDXID": "SPDXRef-Cargo-adler2-a2073a434b96a57f",
@@ -16027,11 +16027,11 @@
       "versionInfo": "0.1.0-alpha.4",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "Copyright (c) 2026 Nouraldin Farge",
       "primaryPackagePurpose": "APPLICATION",
-      "comment": "Project source license is intentionally not selected; owner approval is required before publication. package.json remains private to prevent npm publication."
+      "comment": "Reader is licensed under MIT. package.json remains private to prevent accidental npm publication."
     },
     {
       "SPDXID": "SPDXRef-Vendor-jszip-e523b8c979a85a8a",

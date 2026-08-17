@@ -8,9 +8,9 @@
     "developmentVersion": "0.1.0-alpha.4",
     "candidateDate": "2026-08-17",
     "latestPublicRelease": null,
-    "publicStatus": "private-local-candidate",
+    "publicStatus": "private-github-staging-candidate",
     "publicationDecision": "not-ready-for-publication",
-    "repositoryUrl": null,
+    "repositoryUrl": "https://github.com/NouraldinFarge/Reader",
     "releaseUrl": null,
     "demoUrl": null
   },
@@ -70,15 +70,15 @@
       "statementsPercent": 99.19
     },
     "cleanWindowsMatrix": "not-run",
-    "packagedApplicationMatrix": "pending-final-local-check"
+    "packagedApplicationMatrix": "passed-local-executable-smoke"
   },
   "release": {
-    "sourceArchive": null,
-    "installer": null,
-    "checksumsFile": null,
+    "sourceArchive": "reader-v0.1.0-alpha.4-20260817-source.zip",
+    "installer": "Reader_0.1.0-alpha.4_x64-setup.exe",
+    "checksumsFile": "CHECKSUMS.sha256",
     "sbom": "sbom/reader-v0.1.0-alpha.4.spdx.json",
-    "signingStatus": "unsigned-owner-approval-and-certificate-required",
-    "projectLicense": "not-selected-owner-approval-required"
+    "signingStatus": "unsigned-certificate-and-signing-authorization-required",
+    "projectLicense": "MIT"
   },
   "knownLimitations": [
     "IndexedDB durability and eviction are controlled by the Windows WebView2 profile; metadata export is one-way and not a restorable library backup.",
@@ -86,7 +86,7 @@
     "Fixed-layout and protected EPUB, EPUB CFI locations, cross-device sync, and cloud backup are not implemented.",
     "Audio codec behavior depends on the installed Windows WebView2 media engine.",
     "The candidate has not completed a clean Windows 10/11 install, upgrade, uninstall, and residual-data matrix.",
-    "The installer is unsigned and the project source has no owner-approved license."
+    "The installer is unsigned; no signing certificate or signing authorization has been provided."
   ],
   "aiDisclosure": "AI coding agents assisted with research, implementation, testing, and iteration. Nouraldin Farge defined the requirements and architecture, reviewed and validated changes, set the safety, licensing, and data-source boundaries, and retains responsibility for published claims and releases."
 }

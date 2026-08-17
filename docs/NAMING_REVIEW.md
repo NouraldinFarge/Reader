@@ -6,8 +6,8 @@ Review date: August 17, 2026. This is a confusion check, not trademark clearance
 
 ## Recommendation
 
-- Keep the internal product name and application identifier unchanged for this private alpha; renaming now would create needless migration and artifact churn.
+- Keep the owner-confirmed `Reader` repository/product name and application identifier unchanged for this private alpha; renaming now would create needless migration and artifact churn.
 - Use the differentiating display line **“Reader — a local-first reading library”** in repository and recruiter drafts.
 - Do not claim the generic word is available, unique, or protectable.
-- Before a public repository or stable installer, have the owner approve a distinctive final name after repository, domain, package, Microsoft Store, and appropriate trademark searches.
+- Before broad public promotion or a stable installer, reconsider a distinctive final name after repository, domain, package, Microsoft Store, and appropriate trademark searches.
 - Do not change `app.reader.localfirst`, repository name, executable identity, or public metadata without explicit approval.

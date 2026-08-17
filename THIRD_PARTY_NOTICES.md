@@ -18,4 +18,4 @@ Tauri, Tauri's single-instance plugin, the Tauri CLI, Playwright, axe, and all t
 
 ## Project-source status
 
-These third-party terms do not license Reader's own source. Reader does not yet have an owner-approved project license. Until one is selected and applied, reuse rights are not granted merely by receiving or viewing the source.
+Reader's own source is licensed under the [MIT License](LICENSE). These notices preserve the separate terms that continue to govern third-party components.

@@ -4,6 +4,8 @@ Reader was developed with substantial AI-agent assistance. The disclosure is par
 
 AI coding agents assisted with research, implementation, testing, and iteration. Nouraldin Farge defined the requirements and architecture, reviewed and validated changes, set the safety, licensing, and data-source boundaries, and retains responsibility for published claims and releases.
 
+The owner-confirmed origin and repository-history context are recorded in [Project provenance](PROVENANCE.md).
+
 ## Accountability model
 
 - Human requirements and acceptance criteria define the product scope, including the no-DRM, privacy, one-window, no-terminal, licensing, signing, and publication boundaries.

@@ -1,8 +1,8 @@
 # Reader — a local-first reading library
 
-Reader is a private Windows prerelease for reading authorized EPUB, PDF, text, and audio files without an account, storefront, telemetry, or required network connection.
+Reader is a Windows prerelease for reading authorized EPUB, PDF, text, and audio files without an account, storefront, telemetry, or required network connection.
 
-> **Publication status:** `0.1.0-alpha.4` is a local, unpublished candidate. It is not a public release, the installer is unsigned, and the project source has no owner-approved license yet.
+> **Publication status:** `0.1.0-alpha.4` is staged in a private GitHub repository and is not a public release. The source is MIT-licensed; the installer remains unsigned and has not completed the clean-Windows release matrix.
 
 ![Reader library overview with three synthetic demo titles](docs/media/screenshots/library-overview.png)
 
@@ -120,7 +120,7 @@ pnpm verify:windows-dependencies
 pnpm tauri build --bundles nsis
 ```
 
-The resulting local NSIS candidate is intentionally unsigned. There is no approved public download or release URL. A stable public release requires an owner-approved license, Authenticode certificate, and a clean Windows 10/11 install/upgrade/uninstall matrix.
+The resulting local NSIS candidate is intentionally unsigned. There is no approved public download or release URL. A stable public binary release requires Authenticode signing and a clean Windows 10/11 install/upgrade/uninstall matrix.
 
 ## Known limitations
 
@@ -129,19 +129,19 @@ The resulting local NSIS candidate is intentionally unsigned. There is no approv
 - PDF password entry, PDF annotations, full-document PDF search, fixed-layout EPUB, protected EPUB, EPUB CFI locations, background media controls, sync, and cloud backup are not implemented.
 - Audio decoding varies with Windows WebView2 codecs.
 - Automated axe checks do not replace assistive-technology or scoped accessibility auditing.
-- The private candidate has not completed a clean Windows 10/11 installation, upgrade, uninstall, and residual-user-data matrix.
-- The installer is unsigned and project-source licensing awaits an owner decision.
+- The private staging candidate has not completed a clean Windows 10/11 installation, upgrade, uninstall, and residual-user-data matrix.
+- The installer is unsigned; no signing certificate or signing authorization has been provided.
 
 ## Project history, support, and licensing
 
-Development began as local work before this repository history was initialized. Any initial Git commit records a sanitized import of that existing alpha work; it does not pretend to capture earlier development chronology.
+Development began as local work before this repository history was initialized. The initial Git commit records a sanitized import of that existing alpha work; it does not pretend to capture earlier development chronology. The owner-confirmed record is in [Project provenance](docs/PROVENANCE.md).
 
 - Read [Support](SUPPORT.md) before sharing diagnostic information.
 - Report security concerns through the private route described in [Security](SECURITY.md).
 - Review [Contributing](CONTRIBUTING.md), [Roadmap](ROADMAP.md), and [release notes](docs/RELEASE_NOTES.md).
 - Vendored and build dependencies retain their upstream licenses in [third-party notices](THIRD_PARTY_NOTICES.md) and the [component manifest](THIRD_PARTY_COMPONENTS.json).
 
-Reader's own source does **not** yet have an owner-approved license. Public visibility alone would not grant reuse rights. MIT and Apache-2.0 are documented options, but no license will be applied without explicit owner approval.
+Reader is licensed under the [MIT License](LICENSE). Third-party components remain governed by their own licenses and notices.
 
 ## AI assistance and accountability
 

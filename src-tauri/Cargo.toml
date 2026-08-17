@@ -1,8 +1,10 @@
 [package]
 name = "reader"
 version = "0.1.0-alpha.4"
-description = "A private, local-first reading library"
-authors = ["Reader contributors"]
+description = "A local-first reading library"
+authors = ["Nouraldin Farge"]
+license = "MIT"
+repository = "https://github.com/NouraldinFarge/Reader"
 edition = "2021"
 
 [lib]

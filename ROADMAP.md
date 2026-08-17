@@ -2,7 +2,7 @@
 
 This roadmap separates verified `0.1.0-alpha.4` scope from ideas. It is not a delivery promise.
 
-## Shipped in the private alpha candidate
+## Shipped in the private staging alpha
 
 - Local library and focused reader for bounded EPUB, PDF, TXT, Markdown, HTML, and unprotected audio imports.
 - Metadata-only protected-AAX boundary.
@@ -10,15 +10,15 @@ This roadmap separates verified `0.1.0-alpha.4` scope from ideas. It is not a de
 - IndexedDB persistence with atomic import/delete/reset operations and stale-save invalidation.
 - Least-privilege Tauri shell with one window, single-instance focus, popup denial, restricted navigation, disabled developer tools, and no Windows console.
 - Locked dependencies, conventional quality gates, real Chromium scenarios, accessibility automation, vendor verification, private-data scanning, CI definitions, and SPDX inventory.
+- Owner-confirmed MIT licensing and project provenance, plus a sanitized Git history prepared for private GitHub staging.
 
 ## Required before public consideration
 
-- Owner-approved project license.
-- Owner-approved repository name, remote, visibility, security-report route, and publication plan.
 - Signed installer using an owner-approved Authenticode certificate.
 - Clean Windows 10/11 installation, first/offline launch, persistence, upgrade, uninstall, and residual-data verification.
 - Manual assistive-technology and 400% zoom review, plus final packaged PDF/audio/import checks.
 - Human review of recruiter screenshots, demo, README, facts, and claims.
+- Verified private vulnerability-reporting/security-advisory route and an explicit final visibility decision.
 
 ## Candidate product improvements
 

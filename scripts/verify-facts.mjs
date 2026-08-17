@@ -22,9 +22,13 @@ assert.match(
   'Cargo.lock root package version drifted',
 );
 assert.equal(facts.product.latestPublicRelease, null, 'No public release has been approved');
-assert.equal(facts.product.repositoryUrl, null, 'No public repository has been approved');
-assert.equal(facts.release.projectLicense, 'not-selected-owner-approval-required');
-assert.equal(facts.release.signingStatus, 'unsigned-owner-approval-and-certificate-required');
+assert.equal(facts.product.publicStatus, 'private-github-staging-candidate');
+assert.equal(facts.product.publicationDecision, 'not-ready-for-publication');
+assert.equal(facts.product.repositoryUrl, 'https://github.com/NouraldinFarge/Reader');
+assert.equal(facts.release.projectLicense, 'MIT');
+assert.equal(facts.release.signingStatus, 'unsigned-certificate-and-signing-authorization-required');
+assert.equal(packageJson.license, facts.release.projectLicense, 'Project license drifted');
+assert.equal(packageJson.author, 'Nouraldin Farge', 'Project author drifted');
 
 const synchronizedFiles = [
   'README.md',
@@ -76,5 +80,5 @@ try {
 }
 
 console.log(
-  `Facts verification passed for Reader ${version}; private status, versions, and measured claims agree.`,
+  `Facts verification passed for Reader ${version}; private staging status, versions, licensing, and measured claims agree.`,
 );

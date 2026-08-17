@@ -1,6 +1,6 @@
 # Support and privacy-safe diagnostics
 
-Reader `0.1.0-alpha.4` is private and unpublished, so there is no public support commitment or public download channel.
+Reader `0.1.0-alpha.4` is a private GitHub staging candidate, so there is no public support commitment or public download channel.
 
 For an authorized private review, provide:
 

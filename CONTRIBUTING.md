@@ -1,6 +1,6 @@
 # Contributing
 
-Reader is currently a private, unpublished prerelease without an owner-approved project license. This document describes the review standard for authorized local collaborators; it is not an invitation to reuse or redistribute the source.
+Reader is currently a private GitHub staging prerelease distributed under the [MIT License](LICENSE). This document describes the review standard for authorized collaborators; it does not change the separate licenses of third-party components or make the unsigned installer a supported release.
 
 ## Development setup
 
