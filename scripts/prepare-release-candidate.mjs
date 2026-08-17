@@ -168,8 +168,8 @@ Publication decision: **NOT READY for public release**
 - ${facts.verification.nodeTestsPassed}/${facts.verification.nodeTests} Node tests.
 - ${facts.verification.browserScenarioGroupsPassed}/${facts.verification.browserScenarioGroups} Chromium scenario groups.
 - ${facts.verification.axeScans} axe scans with ${facts.verification.axeSeriousOrCriticalFindings} serious/critical findings.
-- Release executable PE subsystem: ${pe.subsystem} (${pe.subsystemName}); normal direct launch does not create a terminal.
-- Local two-launch smoke: one Reader process and one Reader window.
+- Release executable PE subsystem: ${pe.subsystem} (${pe.subsystemName}); the OS loader does not allocate a console for this binary.
+- Desktop-shell source checks assert one manually created \`main\` window, native popup denial, and first-registered single-instance focus.
 - Local NSIS current-user installer build completed.
 - Project license: ${packageJson.license}.
 
@@ -177,7 +177,8 @@ Publication decision: **NOT READY for public release**
 
 - Installer Authenticode: ${installerSignature.status}.
 - Executable Authenticode: ${executableSignature.status}.
-- Clean Windows 10/11 install, offline launch, upgrade, uninstall, and residual-data matrix: not run.
+- Interactive packaged-app one-window, second-launch, and no-console smoke: ${facts.verification.packagedApplicationMatrix}.
+- Clean Windows 10/11 install, offline launch, upgrade, uninstall, and residual-data matrix: ${facts.verification.cleanWindowsMatrix}.
 - Manual screen-reader, Windows high-contrast, 400% zoom, and packaged audio/PDF checks: incomplete.
 
 This directory is a private staging candidate, not an approved public release or download channel.
