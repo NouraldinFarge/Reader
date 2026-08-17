@@ -84,7 +84,15 @@
     "privateVulnerabilityReporting": "enabled-and-verified-2026-08-17",
     "secretScanning": "enabled",
     "pushProtection": "enabled",
-    "dependabotSecurityUpdates": "enabled"
+    "dependabotSecurityUpdates": "enabled",
+    "dependabotAlertReview": {
+      "advisory": "GHSA-wrw7-89jp-8q8g",
+      "lockedPackage": "glib@0.18.5",
+      "allTargetGraph": "present-via-gtk-webkit-tauri",
+      "windowsTargetGraph": "absent-verified-with-cargo-tree",
+      "disposition": "not-used-on-supported-windows-target",
+      "reassessBefore": "linux-support-or-tauri-gtk-stack-change"
+    }
   },
   "knownLimitations": [
     "IndexedDB durability and eviction are controlled by the Windows WebView2 profile; metadata export is one-way and not a restorable library backup.",

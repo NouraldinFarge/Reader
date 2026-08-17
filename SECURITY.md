@@ -32,6 +32,8 @@ The complete design and concurrency model are in [Architecture](docs/ARCHITECTUR
 
 On August 17, 2026, production and full pnpm advisory scans reported no known advisories at the selected high threshold. `cargo audit` reported no RustSec vulnerability entries and 17 allowed cross-platform warnings, including GTK/GLib-family warnings that do not resolve into Reader's Windows target graph. This is dated evidence, not a promise that dependencies remain vulnerability-free.
 
+GitHub dependency review separately surfaced `GHSA-wrw7-89jp-8q8g` against `glib 0.18.5` in the cross-platform Cargo lockfile. `cargo tree --target all -i glib` reaches it through GTK/WebKit/Tauri, while both the Windows host graph and `cargo tree --target x86_64-pc-windows-msvc -i glib` contain no `glib` package. The alert is therefore classified as not used by Reader's supported Windows prerelease target—not as nonexistent or fixed. Reassess and update the GTK/GLib/Tauri graph before any Linux support or distribution.
+
 The prior private audit named `CVE-2026-16633` for the old PDF.js build. Searches of Mozilla's releases, npm package data, and the NVD did not produce an authoritative record for that identifier on the verification date, so Reader does not repeat the CVE claim as established fact. The old vendored `5.6.205` build was nevertheless replaced with official matching `6.2.108` library/worker files and tested with scripting/evaluation disabled. See [Dependency review](docs/DEPENDENCY_REVIEW.md).
 
 ## Known security and durability limits
