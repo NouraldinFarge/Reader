@@ -2,6 +2,12 @@
 
 All notable changes are recorded here. Reader uses Semantic Versioning while pre-1.0 APIs and storage schemas remain subject to change.
 
+## Unreleased
+
+### Changed
+
+- Made the sanitized MIT-licensed source repository public by explicit owner decision. No tag, GitHub Release, supported binary, signing claim, or clean-Windows release claim was added.
+
 ## 0.1.0-alpha.4 — 2026-08-17
 
 ### Fixed

@@ -1,8 +1,8 @@
 # Support and privacy-safe diagnostics
 
-Reader `0.1.0-alpha.4` is a private GitHub staging candidate, so there is no public support commitment or public download channel.
+Reader `0.1.0-alpha.4` has a public source repository, but there is no public support commitment, supported binary release, or public download channel.
 
-For an authorized private review, provide:
+For a privacy-safe public issue, provide:
 
 1. Reader version and whether it was the browser preview, local executable, or local NSIS install.
 2. Windows version, display scaling, and WebView2 version if known.

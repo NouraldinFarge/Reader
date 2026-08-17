@@ -1,10 +1,10 @@
 # Security policy
 
-Reader `0.1.0-alpha.4` is a private GitHub staging prerelease. It has no supported public release line or public download channel yet.
+Reader `0.1.0-alpha.4` is a public-source prerelease. It has no supported public binary release line or public download channel yet.
 
 ## Reporting privately
 
-Do not open a public issue for a suspected vulnerability. If this private source was shared with you through an authorized channel, report the issue through that same private channel and include only the minimum details needed to reproduce it. GitHub private vulnerability reporting and the repository security-advisory route must be verified before visibility changes.
+Do not open a public issue containing suspected-vulnerability details. Use GitHub's **Report a vulnerability** control if it is available in the repository Security tab. If that control is unavailable, there is currently no verified private intake route: do not publish exploit details or sensitive files while requesting a private contact channel from the repository owner.
 
 Never attach or paste:
 
