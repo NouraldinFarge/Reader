@@ -33,9 +33,9 @@ function blobToDataUrl(blob) {
   });
 }
 
-function elementText(document, selectors) {
+function elementText(root, selectors) {
   for (const selector of selectors) {
-    const value = normalizeText(document.querySelector(selector)?.textContent ?? '');
+    const value = normalizeText(root.querySelector(selector)?.textContent ?? '');
     if (value) return value;
   }
   return '';
@@ -60,19 +60,19 @@ function safePublicationId(value) {
   return /^[a-zA-Z][\w:.-]{0,100}$/.test(value) && !reserved.has(value.toLowerCase());
 }
 
-function enforceMarkupLimits(document) {
-  const elements = [...document.querySelectorAll('*')];
+function enforceMarkupLimits(root) {
+  const elements = [...root.querySelectorAll('*')];
   if (elements.length > IMPORT_LIMITS.markupNodes) {
     throw new ImportPolicyError(
       'This publication section contains too many markup nodes.',
       'reader-import-limit',
     );
   }
-  if ((document.body?.textContent?.length ?? 0) > IMPORT_LIMITS.markupTextCharacters) {
+  if ((root.textContent?.length ?? 0) > IMPORT_LIMITS.markupTextCharacters) {
     throw new ImportPolicyError('This publication section contains too much text.', 'reader-import-limit');
   }
 
-  const stack = [...(document.body?.children ?? [])].map((element) => ({ element, depth: 1 }));
+  const stack = [...root.children].map((element) => ({ element, depth: 1 }));
   while (stack.length) {
     const { element, depth } = stack.pop();
     if (depth > IMPORT_LIMITS.markupDepth) {
@@ -166,9 +166,43 @@ const SAFE_ELEMENT_ATTRIBUTES = Object.freeze({
   TIME: new Set(['datetime']),
 });
 
-function reduceToSafeMarkup(document) {
+const DOMPURIFY_ALLOWED_TAGS = Object.freeze(
+  [...SAFE_HTML_ELEMENTS, 'BODY', 'HEAD', 'HTML', 'TITLE'].map((tagName) => tagName.toLowerCase()),
+);
+const DOMPURIFY_ALLOWED_ATTRIBUTES = Object.freeze([
+  ...new Set([
+    ...SAFE_GLOBAL_ATTRIBUTES,
+    ...Object.values(SAFE_ELEMENT_ATTRIBUTES).flatMap((attributes) => [...attributes]),
+  ]),
+]);
+
+function sanitizeToDetachedDocument(html) {
+  if (!globalThis.DOMPurify?.sanitize) throw new Error('The HTML sanitizer is unavailable.');
+  const root = globalThis.DOMPurify.sanitize(String(html), {
+    ALLOWED_TAGS: DOMPURIFY_ALLOWED_TAGS,
+    ALLOWED_ATTR: DOMPURIFY_ALLOWED_ATTRIBUTES,
+    ALLOW_ARIA_ATTR: false,
+    ALLOW_DATA_ATTR: false,
+    ALLOW_UNKNOWN_PROTOCOLS: false,
+    PARSER_MEDIA_TYPE: 'text/html',
+    RETURN_DOM: true,
+    SANITIZE_DOM: true,
+    WHOLE_DOCUMENT: true,
+  });
+  const body = root?.querySelector?.('body');
+  if (
+    root?.tagName !== 'HTML' ||
+    root.namespaceURI !== 'http://www.w3.org/1999/xhtml' ||
+    body?.namespaceURI !== 'http://www.w3.org/1999/xhtml'
+  ) {
+    throw new Error('The HTML sanitizer returned an invalid document.');
+  }
+  return { body, root };
+}
+
+function reduceToSafeMarkup(root) {
   const seenIds = new Set();
-  for (const element of [...(document.body?.querySelectorAll('*') ?? [])]) {
+  for (const element of [...root.querySelectorAll('*')]) {
     if (element.namespaceURI !== 'http://www.w3.org/1999/xhtml' || !SAFE_HTML_ELEMENTS.has(element.tagName)) {
       element.replaceWith(...element.childNodes);
       continue;
@@ -194,19 +228,19 @@ async function sanitizeHtml(
   { sourcePath = '', zip = null, extractionBudget = null, imageBudget = null, signal } = {},
 ) {
   if (signal?.aborted) throw new DOMException('The import was cancelled.', 'AbortError');
-  const parser = new DOMParser();
-  const document = parser.parseFromString(String(html), 'text/html');
-  enforceMarkupLimits(document);
-  const title = elementText(document, ['h1', 'h2', 'title']);
+  // Callers enforce file/ZIP byte budgets before parsing; these limits bound the retained DOM.
+  const { body, root } = sanitizeToDetachedDocument(html);
+  enforceMarkupLimits(body);
+  const title = elementText(root, ['h1', 'h2', 'title']);
 
-  document
+  body
     .querySelectorAll(
       'script, iframe, frame, frameset, object, embed, form, input, button, textarea, select, option, meta, base, link, style, svg, math, template, noscript, portal',
     )
     .forEach((node) => node.remove());
-  reduceToSafeMarkup(document);
+  reduceToSafeMarkup(body);
 
-  document.querySelectorAll('a[href]').forEach((anchor) => {
+  body.querySelectorAll('a[href]').forEach((anchor) => {
     const href = anchor.getAttribute('href') ?? '';
     const link = classifyPublicationHref(href, sourcePath);
     if (link.kind === 'anchor') {
@@ -237,7 +271,7 @@ async function sanitizeHtml(
     anchor.tabIndex = 0;
   });
 
-  const images = [...document.querySelectorAll('img')];
+  const images = [...body.querySelectorAll('img')];
   if (images.length > IMPORT_LIMITS.embeddedImageCount) {
     throw new ImportPolicyError('This publication contains too many embedded images.', 'reader-import-limit');
   }
@@ -279,9 +313,8 @@ async function sanitizeHtml(
     }
   }
 
-  document.querySelectorAll('audio, video, source, track').forEach((node) => node.remove());
+  body.querySelectorAll('audio, video, source, track').forEach((node) => node.remove());
 
-  const body = document.body;
   const text = normalizeText(body.textContent ?? '');
   return { html: body.innerHTML, text, title };
 }

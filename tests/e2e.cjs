@@ -49,10 +49,11 @@ async function waitForServer() {
   throw new Error('Reader test server did not become ready.');
 }
 
-function monitorPage(page, label) {
+function monitorPage(page, label, { trackDialogs = false } = {}) {
   const errors = [];
   const outbound = [];
   const popups = [];
+  const dialogs = [];
   page.on('pageerror', (error) => errors.push(`pageerror: ${error.message}`));
   page.on('console', (message) => {
     if (message.type() === 'error') errors.push(`console: ${message.text()}`);
@@ -65,15 +66,23 @@ function monitorPage(page, label) {
     popups.push(popup.url());
     void popup.close();
   });
+  if (trackDialogs) {
+    page.on('dialog', (dialog) => {
+      dialogs.push(`${dialog.type()}: ${dialog.message()}`);
+      void dialog.dismiss();
+    });
+  }
   return {
     assertClean() {
       assert.deepEqual(errors, [], `${label} emitted browser errors`);
       assert.deepEqual(outbound, [], `${label} made an unintended outbound request`);
       assert.deepEqual(popups, [], `${label} opened an auxiliary browser window`);
+      assert.deepEqual(dialogs, [], `${label} opened a browser dialog`);
     },
     errors,
     outbound,
     popups,
+    dialogs,
   };
 }
 
@@ -303,7 +312,7 @@ async function coreJourney(context) {
 
 async function hostileInputJourney(context) {
   const page = await context.newPage();
-  const monitor = monitorPage(page, 'hostile input journey');
+  const monitor = monitorPage(page, 'hostile input journey', { trackDialogs: true });
   await boot(page);
 
   const maliciousHtml =
@@ -320,6 +329,11 @@ async function hostileInputJourney(context) {
     <a href="https://example.invalid/blocked" target="_blank">External handoff</a>
     <a id="safe-anchor" href="#safe-anchor">Safe anchor</a>
     <img src="data:image/svg+xml,<svg onload=alert(1)>"><img src="https://example.invalid/tracker.png" srcset="https://example.invalid/2x 2x">
+    <p id="encoded-boundary">&amp;lt;img src=x onerror=window.__readerFixtureExecuted=true&amp;gt;</p>
+    <!--><img src="https://example.invalid/comment.png" onerror="window.__readerFixtureExecuted=true">-->
+    <noscript><p title="</noscript><img src=x onerror=window.__readerFixtureExecuted=true>">noscript boundary</p></noscript>
+    <template><img src="https://example.invalid/template.png" onerror="window.__readerFixtureExecuted=true"></template>
+    <form><math><mtext></form><form><mglyph><style></math><img src="https://example.invalid/mutation.png" onerror="window.__readerFixtureExecuted=true">
   </body></html>`);
   const imported = await importPublication(page, {
     name: 'Markup Boundary Study.html',
@@ -331,7 +345,7 @@ async function hostileInputJourney(context) {
   await page.locator('#reader-view').waitFor({ state: 'visible' });
   const safety = await page.locator('#reader-content').evaluate((root) => ({
     forbiddenElements: root.querySelectorAll(
-      'script,iframe,object,embed,form,input,svg,math,style,meta,base,link,a[href],img',
+      'script,iframe,object,embed,form,input,button,svg,math,style,meta,base,link,template,noscript,a[href],img',
     ).length,
     forbiddenAttributes: [...root.querySelectorAll('*')].flatMap((element) =>
       [...element.attributes]
@@ -365,21 +379,87 @@ async function hostileInputJourney(context) {
       '<div id=window></div><div id=same></div><div id=same></div>',
       '<template><img src="https://example.invalid"></template><x-reader style="color:red">kept text</x-reader>',
       '<form><button formaction="file:///secret">bad</button></form><p>safe</p>',
+      '<ScRiPt>window.__readerSecurityProbe=true</script ><p>mixed-case boundary</p>',
+      '<!--><img src="https://example.invalid/comment-fuzz.png" onerror="window.__readerSecurityProbe=true">-->',
+      '<noscript><p title="</noscript><img src=x onerror=window.__readerSecurityProbe=true>">boundary</p></noscript>',
+      '<form><math><mtext></form><form><mglyph><style></math><img src=x onerror=window.__readerSecurityProbe=true>',
+      '<math><mtext><table><mglyph><style><!--</style><img title="--><img src=x onerror=window.__readerSecurityProbe=true>">',
+      '&amp;lt;img src=x onerror=window.__readerSecurityProbe=true&amp;gt;',
     ];
     const failures = [];
+    window.__readerSecurityProbe = undefined;
     for (const payload of payloads) {
       const { html } = await sanitizeImportedHtml(payload);
-      const document = new DOMParser().parseFromString(html, 'text/html');
-      const forbidden = document.querySelector(
+      const reparsed = new DOMParser().parseFromString(html, 'text/html');
+      const forbidden = reparsed.querySelector(
         'script,iframe,object,embed,form,input,button,svg,math,style,meta,base,link,template,[onclick],[onerror],[style],[srcdoc],[target],[ping],[formaction],a[href],img',
       );
-      if (forbidden || document.querySelector('#window') || document.querySelectorAll('#same').length > 1) {
+      const probe = document.createElement('div');
+      probe.hidden = true;
+      document.body.append(probe);
+      probe.innerHTML = html;
+      await new Promise((resolve) => setTimeout(resolve, 20));
+      const liveForbidden = probe.querySelector(
+        'script,iframe,object,embed,form,input,button,svg,math,style,meta,base,link,template,[onclick],[onerror],[style],[srcdoc],[target],[ping],[formaction],a[href],img',
+      );
+      const foreignNamespace = [...probe.querySelectorAll('*')].some(
+        (element) => element.namespaceURI !== 'http://www.w3.org/1999/xhtml',
+      );
+      if (
+        forbidden ||
+        liveForbidden ||
+        foreignNamespace ||
+        reparsed.querySelector('#window') ||
+        reparsed.querySelectorAll('#same').length > 1 ||
+        window.__readerSecurityProbe !== undefined
+      ) {
         failures.push(html);
       }
+      probe.remove();
     }
     return failures;
   });
   assert.deepEqual(fuzzResult, []);
+  const titleBoundary = await page.evaluate(async () => {
+    const { sanitizeImportedHtml } = await import('./src/parsers.js');
+    const result = await sanitizeImportedHtml(
+      '<!doctype html><html><head><title>Sanitized document title</title></head><body><p>Body</p></body></html>',
+    );
+    return { title: result.title, retainedHeadMarkup: /<title/i.test(result.html) };
+  });
+  assert.deepEqual(titleBoundary, {
+    title: 'Sanitized document title',
+    retainedHeadMarkup: false,
+  });
+  await page.locator('#close-reader').click();
+
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.getByRole('heading', { name: 'Your library' }).waitFor();
+  await page.getByRole('button', { name: 'Open Markup Boundary Study', exact: true }).click();
+  await page.locator('#reader-view').waitFor({ state: 'visible' });
+  const persistedSafety = await page.locator('#reader-content').evaluate((root) => ({
+    forbiddenElements: root.querySelectorAll(
+      'script,iframe,object,embed,form,input,button,svg,math,style,meta,base,link,template,noscript,a[href],img',
+    ).length,
+    forbiddenAttributes: [...root.querySelectorAll('*')].flatMap((element) =>
+      [...element.attributes]
+        .filter((attribute) =>
+          /^(on|style$|srcdoc$|target$|ping$|formaction$|class$|name$|xlink:)/i.test(attribute.name),
+        )
+        .map((attribute) => `${element.tagName}:${attribute.name}`),
+    ),
+    foreignNamespaces: [...root.querySelectorAll('*')].filter(
+      (element) => element.namespaceURI !== 'http://www.w3.org/1999/xhtml',
+    ).length,
+    encodedBoundary: root.querySelector('#encoded-boundary')?.textContent,
+  }));
+  assert.deepEqual(persistedSafety, {
+    forbiddenElements: 0,
+    forbiddenAttributes: [],
+    foreignNamespaces: 0,
+    encodedBoundary: '&lt;img src=x onerror=window.__readerFixtureExecuted=true&gt;',
+  });
+  assert.equal(await page.evaluate(() => window.__readerFixtureExecuted), undefined);
   await page.locator('#close-reader').click();
 
   const epub3 = await importPublication(page, {

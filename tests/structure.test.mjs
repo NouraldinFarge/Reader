@@ -20,7 +20,11 @@ test('every static id queried by the application exists in the shell', () => {
 
 test('the shell pins local scripts and a deny-by-default CSP', () => {
   assert.match(html, /connect-src 'none'/);
+  assert.match(html, /frame-src 'none'/);
   assert.match(html, /object-src 'none'/);
+  assert.match(html, /script-src 'self';/);
+  assert.doesNotMatch(html, /script-src[^;]*'unsafe-inline'/);
+  assert.match(html, /<script src="\.\/vendor\/dompurify\/purify\.min\.js"><\/script>/);
   assert.doesNotMatch(html, /<script[^>]+src="https?:/i);
   assert.doesNotMatch(html, /<link[^>]+href="https?:/i);
 });

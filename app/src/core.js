@@ -168,13 +168,11 @@ export function normalizeText(value = '') {
 export function stripMarkup(value = '') {
   return normalizeText(
     String(value)
-      .replace(/<script[\s\S]*?<\/script>/gi, ' ')
-      .replace(/<style[\s\S]*?<\/style>/gi, ' ')
       .replace(/<[^>]+>/g, ' ')
-      .replace(/&nbsp;/gi, ' ')
-      .replace(/&amp;/gi, '&')
-      .replace(/&lt;/gi, '<')
-      .replace(/&gt;/gi, '>'),
+      .replace(/&(nbsp|amp|lt|gt);/gi, (entity, name) => {
+        const decoded = { nbsp: ' ', amp: '&', lt: '<', gt: '>' };
+        return decoded[name.toLowerCase()] ?? entity;
+      }),
   );
 }
 

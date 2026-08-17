@@ -3,15 +3,15 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "Reader 0.1.0-alpha.4 dependency SBOM",
-  "documentNamespace": "https://spdx.org/spdxdocs/reader-0.1.0-alpha.4-801ec2254b769f7673de0ca5",
+  "documentNamespace": "https://spdx.org/spdxdocs/reader-0.1.0-alpha.4-9de03686fb415f01b856ca51",
   "creationInfo": {
-    "created": "2026-08-17T17:06:37Z",
+    "created": "2026-08-17T22:38:12Z",
     "creators": [
       "Tool: Reader scripts/generate-sbom.mjs",
       "Person: Nouraldin Farge"
     ]
   },
-  "documentComment": "Exact dependency inventory generated from pnpm-lock.yaml (SHA-256 a5f3a204419c2027bc7ef24058321460bb2a27a8febe09b77990c7532f8d1c1c), src-tauri/Cargo.lock (SHA-256 1cc43b1985708d4b85ff45925e4d1313b01515c2ccb23f780eecf5291101a3da), and THIRD_PARTY_COMPONENTS.json (SHA-256 0a98c78e9f9e58e2e2e129c168bd83f944be8828b3c8bcbcca86c4392fd16742). Cargo entries include the cross-platform lock; the release manifest separately records the Windows-resolved build graph.",
+  "documentComment": "Exact dependency inventory generated from pnpm-lock.yaml (SHA-256 a5f3a204419c2027bc7ef24058321460bb2a27a8febe09b77990c7532f8d1c1c), src-tauri/Cargo.lock (SHA-256 1cc43b1985708d4b85ff45925e4d1313b01515c2ccb23f780eecf5291101a3da), and THIRD_PARTY_COMPONENTS.json (SHA-256 a23d0544ffea98adc0ff4c21accbc15569b8195898e3fc1c835b4329f34a71e5). Cargo entries include the cross-platform lock; the release manifest separately records the Windows-resolved build graph.",
   "packages": [
     {
       "SPDXID": "SPDXRef-Cargo-adler2-a2073a434b96a57f",
@@ -16034,6 +16034,31 @@
       "comment": "Reader is licensed under MIT. package.json remains private to prevent accidental npm publication."
     },
     {
+      "SPDXID": "SPDXRef-Vendor-dompurify-f0671b64e5e1d8bb",
+      "name": "DOMPurify",
+      "versionInfo": "3.4.13",
+      "downloadLocation": "https://registry.npmjs.org/dompurify/-/dompurify-3.4.13.tgz",
+      "filesAnalyzed": true,
+      "licenseConcluded": "MPL-2.0 OR Apache-2.0",
+      "licenseDeclared": "MPL-2.0 OR Apache-2.0",
+      "copyrightText": "See the preserved license file listed in THIRD_PARTY_COMPONENTS.json.",
+      "primaryPackagePurpose": "LIBRARY",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "2a0647141c748404c9958cf12079c3fdb79cf9a7faaa87c8fac034a3b1275ab2"
+        }
+      ],
+      "comment": "Vendored files: app/vendor/dompurify/purify.min.js (SHA-256 9ab3d44d73c3e3947f9ab72e0f0bc15c7f1931d60b365ba261fc85fe59013c56).",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/dompurify@3.4.13"
+        }
+      ]
+    },
+    {
       "SPDXID": "SPDXRef-Vendor-jszip-e523b8c979a85a8a",
       "name": "JSZip",
       "versionInfo": "3.10.1",
@@ -19954,6 +19979,11 @@
       "spdxElementId": "SPDXRef-Package-Reader",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-NPM-yocto-queue-5f83a5d1f0f278dc"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Reader",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-Vendor-dompurify-f0671b64e5e1d8bb"
     },
     {
       "spdxElementId": "SPDXRef-Package-Reader",

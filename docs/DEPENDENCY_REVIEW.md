@@ -6,9 +6,10 @@ Verified August 17, 2026 for the public-source `0.1.0-alpha.4` candidate.
 
 - JSZip `3.10.1`, official npm tarball; vendored and license hashes match `THIRD_PARTY_COMPONENTS.json`.
 - Marked upgraded from `17.0.5` to `18.0.9`, official npm tarball; vendored and license hashes match.
+- DOMPurify `3.4.13`, official npm tarball; vendored locally as the first-stage HTML sanitizer, with source, runtime, and license hashes recorded in the manifest.
 - Mozilla PDF.js upgraded from `5.6.205` to `6.2.108`; library and worker both report build `0365cbde0` and match the manifest hashes.
 
-Official provenance references: [Mozilla PDF.js releases](https://github.com/mozilla/pdf.js/releases), [pdfjs-dist on npm](https://www.npmjs.com/package/pdfjs-dist), [JSZip](https://www.npmjs.com/package/jszip), and [Marked](https://www.npmjs.com/package/marked).
+Official provenance references: [Mozilla PDF.js releases](https://github.com/mozilla/pdf.js/releases), [pdfjs-dist on npm](https://www.npmjs.com/package/pdfjs-dist), [DOMPurify](https://github.com/cure53/DOMPurify), [JSZip](https://www.npmjs.com/package/jszip), and [Marked](https://www.npmjs.com/package/marked).
 
 The private starting audit attributed `CVE-2026-16633` to the old PDF.js build. Authoritative searches of Mozilla release/advisory material, npm package data, and the NVD returned no record for that identifier on the verification date. That identifier is therefore recorded as **unverified**, not repeated as an established vulnerability or used to invent fixed-version guidance. The dependency was still upgraded to the current official stable package available during the review, with matching library/worker artifacts and defensive options preserved.
 
