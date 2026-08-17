@@ -2,6 +2,8 @@
 
 Reader is a public-source prerelease distributed under the [MIT License](LICENSE). This document describes the review standard for contributors; it does not change the separate licenses of third-party components or make the unsigned installer a supported release.
 
+Participation is governed by the [Code of Conduct](CODE_OF_CONDUCT.md). Use the repository's issue forms for public bug reports and feature requests; report suspected vulnerabilities only through the private route described in [Security](SECURITY.md).
+
 ## Development setup
 
 Use Node.js 20 or newer, the pnpm version pinned in `package.json`, Rust's stable MSVC toolchain, Microsoft C++ Build Tools, and WebView2 on Windows.

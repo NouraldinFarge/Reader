@@ -36,6 +36,8 @@
     "test:rust": "cargo fmt --manifest-path src-tauri/Cargo.toml --check && cargo clippy --manifest-path src-tauri/Cargo.toml --locked --all-targets --all-features -- -D warnings && cargo check --manifest-path src-tauri/Cargo.toml --locked --all-targets && cargo test --manifest-path src-tauri/Cargo.toml --locked --all-targets",
     "generate:sbom": "node scripts/generate-sbom.mjs",
     "generate:recruiter-fixtures": "node scripts/generate-recruiter-fixtures.mjs",
+    "generate:social-previews": "node scripts/render-social-previews.mjs",
+    "verify:media": "node scripts/verify-media.mjs",
     "archive:source": "node scripts/create-source-archive.mjs",
     "build:windows:release": "node scripts/build-windows-release.mjs",
     "prepare:release": "node scripts/prepare-release-candidate.mjs",

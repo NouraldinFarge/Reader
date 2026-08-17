@@ -2,13 +2,14 @@
 
 Canonical facts date: August 17, 2026  
 Exact candidate: `0.1.0-alpha.4`  
-Status: public source repository; no public binary release
+Status: public source repository; no supported public binary release
 
-Repository URL: <https://github.com/NouraldinFarge/Reader>
-Release URL: not available—no release approved  
-Demo URL: not available—no standalone demo URL approved
-License: MIT  
-Installer: local unsigned candidate only; public download prohibited
+- Repository: <https://github.com/NouraldinFarge/Reader>
+- Supported release: not available—no release approved
+- Repository demo: [75-second real-UI video](media/demo/reader-alpha4-demo.mp4) with a [timed transcript](DEMO_SCRIPT.md)
+- Standalone hosted demo: not available
+- License: MIT
+- Installer: local unsigned verification candidate only; no supported public download
 
 Every draft below is synchronized with `docs/PROJECT_FACTS.json`. The source repository is public by owner decision; none of this recruiter copy has been placed on a résumé, portfolio, LinkedIn, Indeed, or another professional surface.
 
@@ -80,7 +81,7 @@ Built Reader `0.1.0-alpha.4`, an MIT-licensed, public-source local-first Windows
 
 ## Current limitations for every surface
 
-- Public source alpha; there is no public binary release or standalone demo URL.
+- Public source alpha; there is no supported public binary release or standalone hosted demo URL. The repository includes a 75-second local demo asset and timed transcript.
 - IndexedDB durability depends on the local WebView2 profile; JSON export cannot restore a library.
 - Canvas-only PDF without text selection, document search, PDF annotations, password-entry UI, or complete screen-reader access.
 - No fixed-layout/protected EPUB, CFI locations, background media controls, cloud sync, or cross-device support.
@@ -97,15 +98,15 @@ AI coding agents assisted with research, implementation, testing, and iteration.
 
 | Asset                      | Path                                                    | Alt text / status                                                                                                  |
 | -------------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| Library overview           | `docs/media/screenshots/library-overview.png`           | “Reader library overview showing three original synthetic titles, search, progress, and local-library navigation.” |
-| Focused reading            | `docs/media/screenshots/focused-reading.png`            | “Reader focused reading view in sepia with contents, typography controls, and synthetic essay text.”               |
-| PDF view                   | `docs/media/screenshots/pdf-view.png`                   | “Reader canvas PDF view showing a synthetic verification document and page controls.”                              |
-| Notes/search               | `docs/media/screenshots/notes-and-search.png`           | “Reader highlights view showing one original synthetic quote and private-note workflow.”                           |
-| Protected-content boundary | `docs/media/screenshots/protected-content-boundary.png` | “Reader metadata-only protected-content screen explaining that playback and decryption are unavailable.”           |
-| Appearance controls        | `docs/media/screenshots/appearance-controls.png`        | “Reader appearance panel with paper, sepia, and night themes and typography controls.”                             |
+| Library overview           | `docs/media/screenshots/library-overview.jpg`           | “Reader library overview showing three original synthetic titles, search, progress, and local-library navigation.” |
+| Focused reading            | `docs/media/screenshots/focused-reading.jpg`            | “Reader focused reading view in sepia with contents, typography controls, and synthetic essay text.”               |
+| PDF view                   | `docs/media/screenshots/pdf-view.jpg`                   | “Reader canvas PDF view showing a synthetic verification document and page controls.”                              |
+| Notes/search               | `docs/media/screenshots/notes-and-search.jpg`           | “Reader highlights view showing one original synthetic quote and private-note workflow.”                           |
+| Protected-content boundary | `docs/media/screenshots/protected-content-boundary.jpg` | “Reader metadata-only protected-content screen explaining that playback and decryption are unavailable.”           |
+| Appearance controls        | `docs/media/screenshots/appearance-controls.jpg`        | “Reader appearance panel with paper, sepia, and night themes and typography controls.”                             |
 | Recruiter demo             | `docs/media/demo/reader-alpha4-demo.mp4`                | 75-second real-UI repository asset; no standalone hosted demo URL.                                                 |
-| Demo thumbnail             | `docs/media/demo/reader-alpha4-demo-thumbnail.png`      | Real library UI thumbnail tracked with the public source.                                                          |
-| GitHub social preview      | `docs/media/social/github-social-preview.png`           | 1280×640 composition using the real library capture and verified positioning.                                      |
+| Demo thumbnail             | `docs/media/demo/reader-alpha4-demo-thumbnail.jpg`      | Real library UI thumbnail tracked with the public source.                                                          |
+| GitHub social preview      | `docs/media/social/github-social-preview.png`           | 1280×720 composition using the real library capture and verified positioning.                                      |
 | Portfolio preview          | `docs/media/social/portfolio-og-preview.png`            | 1200×630 composition using the real Reader UI and verified stack.                                                  |
 
 ## Publication checklist for copy owners

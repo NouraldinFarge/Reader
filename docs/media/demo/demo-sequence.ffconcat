@@ -1,16 +1,16 @@
 ffconcat version 1.0
-file 'reader-alpha4-demo-thumbnail.png'
+file 'reader-alpha4-demo-thumbnail.jpg'
 duration 12
-file '../screenshots/library-overview.png'
+file '../screenshots/library-overview.jpg'
 duration 10
-file '../screenshots/focused-reading.png'
+file '../screenshots/focused-reading.jpg'
 duration 13
-file '../screenshots/notes-and-search.png'
+file '../screenshots/notes-and-search.jpg'
 duration 11
-file '../screenshots/appearance-controls.png'
+file '../screenshots/appearance-controls.jpg'
 duration 10
-file '../screenshots/pdf-view.png'
+file '../screenshots/pdf-view.jpg'
 duration 12
-file '../screenshots/protected-content-boundary.png'
+file '../screenshots/protected-content-boundary.jpg'
 duration 13
-file '../screenshots/protected-content-boundary.png'
+file '../screenshots/protected-content-boundary.jpg'

@@ -42,6 +42,7 @@ jobs:
           pnpm verify:facts
           pnpm verify:links
           pnpm verify:vendor
+          pnpm verify:media
           pnpm verify:private-data
 
       - name: Run unit and coverage gates
