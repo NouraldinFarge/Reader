@@ -1020,12 +1020,12 @@
 
   .status-pill.neutral {
     background: var(--surface-muted);
-    color: var(--text-soft);
+    color: var(--text);
   }
 
   .status-pill.warning {
     background: var(--gold-soft);
-    color: var(--gold);
+    color: var(--text);
   }
 
   .status-pill svg {
