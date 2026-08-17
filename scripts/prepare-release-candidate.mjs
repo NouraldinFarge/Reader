@@ -53,7 +53,7 @@ function authenticode(path) {
     'StatusMessage = $signature.StatusMessage',
     'SignerSubject = if ($signature.SignerCertificate) { $signature.SignerCertificate.Subject } else { $null }',
     '} | ConvertTo-Json -Compress',
-  ].join('; ');
+  ].join('\n');
   const result = spawnSync('powershell.exe', ['-NoProfile', '-NonInteractive', '-Command', command], {
     encoding: 'utf8',
   });
