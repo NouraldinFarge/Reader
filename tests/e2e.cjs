@@ -102,6 +102,14 @@ async function severeAccessibilityScan(page, label) {
   );
 }
 
+async function waitForAnimations(page, selector) {
+  await page
+    .locator(selector)
+    .evaluate((element) =>
+      Promise.all(element.getAnimations({ subtree: true }).map((animation) => animation.finished)),
+    );
+}
+
 async function importPublication(page, { name, mimeType, buffer, title }) {
   await page.locator('#file-input').setInputFiles({ name, mimeType, buffer });
   const openButton = page.getByRole('button', { name: `Open ${title}`, exact: true });
@@ -269,6 +277,7 @@ async function coreJourney(context) {
 
   await page.locator('#settings-button').click();
   await page.getByRole('heading', { name: 'Settings' }).waitFor();
+  await waitForAnimations(page, '#settings-dialog');
   await severeAccessibilityScan(page, 'library settings dialog');
   page.once('dialog', async (dialog) => {
     assert.match(dialog.message(), /private titles, filenames, reading progress, quotes, and notes/i);
