@@ -8,6 +8,11 @@ All notable changes are recorded here. Reader uses Semantic Versioning while pre
 
 - Made the sanitized MIT-licensed source repository public by explicit owner decision. No tag, GitHub Release, supported binary, signing claim, or clean-Windows release claim was added.
 
+### Security
+
+- Added pinned, locally vendored DOMPurify as the first-stage imported-markup sanitizer while preserving Reader's narrower namespace, element, attribute, link, image, and ID policies; expanded live-render and persisted-reload mutation-XSS coverage.
+- Replaced recursive entity decoding and script-specific tag regular expressions in plain-text extraction with one-pass entity decoding, and disabled the unused frame capability in the application CSP.
+
 ## 0.1.0-alpha.4 — 2026-08-17
 
 ### Fixed

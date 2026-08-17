@@ -9,6 +9,7 @@ import {
   progressPercent,
   safeFilename,
   searchSnippet,
+  stripMarkup,
   titleFromFilename,
 } from '../app/src/core.js';
 
@@ -44,6 +45,12 @@ test('progressPercent handles text, PDF, and audio without overflow', () => {
 
 test('user strings are escaped and snippets stay bounded', () => {
   assert.equal(escapeHtml('<script>"x"</script>'), '&lt;script&gt;&quot;x&quot;&lt;/script&gt;');
+  assert.equal(stripMarkup('<ScRiPt>alert(1)</script ><p>Readable</p>'), 'alert(1) Readable');
+  assert.equal(
+    stripMarkup('&amp;lt;img src=x onerror=alert(1)&amp;gt;'),
+    '&lt;img src=x onerror=alert(1)&gt;',
+  );
+  assert.equal(stripMarkup('&amp;amp;'), '&amp;');
   const snippet = searchSnippet('One two three four five six seven eight nine', 'five', 8);
   assert.match(snippet, /five/i);
   assert.ok(snippet.length < 40);

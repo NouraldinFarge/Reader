@@ -30,15 +30,18 @@ for (const component of manifest.components) {
 
 const jszip = manifest.components.find((component) => component.package === 'jszip');
 const marked = manifest.components.find((component) => component.package === 'marked');
+const dompurify = manifest.components.find((component) => component.package === 'dompurify');
 const pdfjs = manifest.components.find((component) => component.package === 'pdfjs-dist');
 const jszipSource = await readFile(resolve(root, jszip.vendoredFiles[0].path), 'utf8');
 const markedSource = await readFile(resolve(root, marked.vendoredFiles[0].path), 'utf8');
+const dompurifySource = await readFile(resolve(root, dompurify.vendoredFiles[0].path), 'utf8');
 const pdfSources = await Promise.all(
   pdfjs.vendoredFiles.map((file) => readFile(resolve(root, file.path), 'utf8')),
 );
 
 assert.match(jszipSource, new RegExp(`JSZip v${jszip.version.replaceAll('.', '\\.')}`));
 assert.match(markedSource, new RegExp(`marked v${marked.version.replaceAll('.', '\\.')}`));
+assert.match(dompurifySource, new RegExp(`DOMPurify ${dompurify.version.replaceAll('.', '\\.')}`));
 for (const source of pdfSources) {
   assert.match(source, new RegExp(`pdfjsVersion = ${pdfjs.version.replaceAll('.', '\\.')}`));
   assert.match(source, new RegExp(`pdfjsBuild = ${pdfjs.build}`));

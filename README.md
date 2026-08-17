@@ -64,7 +64,7 @@ Use only publications you are authorized to access. Do not upload publications, 
 - Frontend: HTML, CSS, and plain JavaScript ES modules
 - Persistence: IndexedDB in the Tauri WebView profile
 - Desktop boundary: Rust and Tauri v2
-- Rendering/parsing: vendored PDF.js, JSZip, and Marked
+- Rendering/parsing: vendored DOMPurify, PDF.js, JSZip, and Marked
 - Verification: Node's test runner, c8, Playwright, axe, ESLint, Stylelint, Markdownlint, Prettier, Cargo fmt/clippy/check/test, npm audit, and cargo-audit
 - Windows packaging: Tauri NSIS current-user installer
 
