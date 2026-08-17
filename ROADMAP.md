@@ -18,7 +18,7 @@ This roadmap separates verified `0.1.0-alpha.4` scope from ideas. It is not a de
 - Clean Windows 10/11 installation, first/offline launch, persistence, upgrade, uninstall, and residual-data verification.
 - Manual assistive-technology and 400% zoom review, plus final packaged PDF/audio/import checks.
 - Human review of recruiter screenshots, demo, README, facts, and claims.
-- Verified private vulnerability-reporting/security-advisory route and explicit binary-release approval.
+- Explicit approval for the exact signed binary and public release; the source repository's private vulnerability-reporting route is already enabled.
 
 ## Candidate product improvements
 
