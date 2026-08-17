@@ -22,6 +22,13 @@ for (const required of ['directory', 'source-archive', 'installer', 'executable'
 const packageJson = JSON.parse(await readFile(resolve(root, 'package.json'), 'utf8'));
 const facts = JSON.parse(await readFile(resolve(root, 'docs', 'PROJECT_FACTS.json'), 'utf8'));
 const directory = options.get('directory');
+const packageManager = packageJson.packageManager;
+
+assert.match(
+  packageManager,
+  /^pnpm@\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?$/,
+  'package.json must pin an exact pnpm version',
+);
 
 function run(command, commandArgs) {
   const executable = process.platform === 'win32' && command.endsWith('.cmd') ? process.env.ComSpec : command;
@@ -117,7 +124,7 @@ const manifest = {
   buildEnvironment: {
     os: `${process.platform}-${process.arch}`,
     node: process.version,
-    pnpm: run(process.platform === 'win32' ? 'pnpm.cmd' : 'pnpm', ['--version']),
+    pnpm: packageManager,
     rustc: run('rustc', ['--version']),
     cargo: run('cargo', ['--version']),
   },

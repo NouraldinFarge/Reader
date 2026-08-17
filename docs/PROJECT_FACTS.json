@@ -73,7 +73,7 @@
     "packagedApplicationMatrix": "not-run-requires-interactive-windows-user-session"
   },
   "release": {
-    "sourceArchive": "reader-v0.1.0-alpha.4-20260817-candidate2-source.zip",
+    "sourceArchive": "reader-v0.1.0-alpha.4-20260817-candidate3-source.zip",
     "installer": "Reader_0.1.0-alpha.4_x64-setup.exe",
     "checksumsFile": "CHECKSUMS.sha256",
     "sbom": "sbom/reader-v0.1.0-alpha.4.spdx.json",
