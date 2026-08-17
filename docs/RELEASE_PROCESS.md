@@ -62,7 +62,7 @@ Before a supported public binary release:
 - sign the executable and installer with an authorized Authenticode certificate;
 - run the clean Windows 10/11 install, offline launch, persistence, upgrade, uninstall, and residual-data matrix;
 - complete the scoped screen-reader, high-contrast, 400% zoom, packaged PDF, and packaged audio checks;
-- verify the GitHub private-vulnerability-reporting/security-advisory route;
+- confirm the enabled GitHub private-vulnerability-reporting/security-advisory route remains available;
 - rerun artifact verification and privacy scanning against the signed candidate;
 - obtain explicit approval for visibility, tag, release, binary upload, and any recruiter/profile edits.
 

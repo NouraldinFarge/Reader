@@ -1,5 +1,7 @@
 # Reader — a local-first reading library
 
+[![Quality gates](https://github.com/NouraldinFarge/Reader/actions/workflows/quality.yml/badge.svg)](https://github.com/NouraldinFarge/Reader/actions/workflows/quality.yml)
+
 Reader is a Windows prerelease for reading authorized EPUB, PDF, text, and audio files without an account, storefront, telemetry, or required network connection.
 
 > **Repository status:** The source repository is public by owner decision. `0.1.0-alpha.4` remains an unreleased prerelease with no supported public binary download; the installer is unsigned and has not completed the clean-Windows release matrix.
@@ -137,7 +139,7 @@ The resulting local NSIS candidate is intentionally unsigned. There is no approv
 Development began as local work before this repository history was initialized. The initial Git commit records a sanitized import of that existing alpha work; it does not pretend to capture earlier development chronology. The owner-confirmed record is in [Project provenance](docs/PROVENANCE.md).
 
 - Read [Support](SUPPORT.md) before sharing diagnostic information.
-- Follow the current private-reporting availability and redaction guidance in [Security](SECURITY.md) before sharing a suspected vulnerability.
+- Use the enabled private vulnerability-reporting route and follow the redaction guidance in [Security](SECURITY.md) before sharing a suspected vulnerability.
 - Review [Contributing](CONTRIBUTING.md), [Roadmap](ROADMAP.md), [release process](docs/RELEASE_PROCESS.md), and [release notes](docs/RELEASE_NOTES.md).
 - Vendored and build dependencies retain their upstream licenses in [third-party notices](THIRD_PARTY_NOTICES.md) and the [component manifest](THIRD_PARTY_COMPONENTS.json).
 

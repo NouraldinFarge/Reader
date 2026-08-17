@@ -4,7 +4,7 @@ Reader `0.1.0-alpha.4` is a public-source prerelease. It has no supported public
 
 ## Reporting privately
 
-Do not open a public issue containing suspected-vulnerability details. Use GitHub's **Report a vulnerability** control if it is available in the repository Security tab. If that control is unavailable, there is currently no verified private intake route: do not publish exploit details or sensitive files while requesting a private contact channel from the repository owner.
+Do not open a public issue containing suspected-vulnerability details. Use **Report a vulnerability** in this repository's Security tab; GitHub private vulnerability reporting is enabled. Do not publish exploit details or sensitive files in an issue, discussion, or pull request.
 
 Never attach or paste:
 

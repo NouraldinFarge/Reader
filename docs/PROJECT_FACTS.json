@@ -80,6 +80,12 @@
     "signingStatus": "unsigned-certificate-and-signing-authorization-required",
     "projectLicense": "MIT"
   },
+  "repositorySecurity": {
+    "privateVulnerabilityReporting": "enabled-and-verified-2026-08-17",
+    "secretScanning": "enabled",
+    "pushProtection": "enabled",
+    "dependabotSecurityUpdates": "enabled"
+  },
   "knownLimitations": [
     "IndexedDB durability and eviction are controlled by the Windows WebView2 profile; metadata export is one-way and not a restorable library backup.",
     "PDF content is canvas-only, without a selectable text layer, document search, annotations, or complete screen-reader access.",

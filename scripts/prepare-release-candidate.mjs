@@ -157,11 +157,11 @@ const signatureStatus = [
   'No signing certificate or signing authorization was provided for this candidate.',
   '',
 ].join('\n');
-const report = `# Reader ${packageJson.version} private release-candidate report
+const report = `# Reader ${packageJson.version} public-source binary release-candidate report
 
 Generated: ${createdAt}  
 Source commit: \`${sourceCommit}\`  
-Publication decision: **NOT READY for public release**
+Publication decision: **NOT READY for a supported public binary release**
 
 ## Passed local evidence
 
@@ -181,7 +181,7 @@ Publication decision: **NOT READY for public release**
 - Clean Windows 10/11 install, offline launch, upgrade, uninstall, and residual-data matrix: ${facts.verification.cleanWindowsMatrix}.
 - Manual screen-reader, Windows high-contrast, 400% zoom, and packaged audio/PDF checks: incomplete.
 
-This directory is a private staging candidate, not an approved public release or download channel.
+This directory is a local binary candidate built from public source. It is not an approved release or supported download channel.
 `;
 
 await writeFile(resolve(directory, 'CHECKSUMS.sha256'), checksums, { flag: 'wx' });
@@ -192,5 +192,5 @@ await writeFile(resolve(directory, 'build-manifest.json'), `${JSON.stringify(man
 });
 
 console.log(
-  `Private release candidate prepared: ${artifacts.length} immutable artifacts; source commit ${sourceCommit}; installer ${installerSignature.status}; executable subsystem ${pe.subsystem}.`,
+  `Public-source binary candidate prepared: ${artifacts.length} immutable artifacts; source commit ${sourceCommit}; installer ${installerSignature.status}; executable subsystem ${pe.subsystem}.`,
 );

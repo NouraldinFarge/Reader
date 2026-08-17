@@ -43,7 +43,7 @@ Reader `0.1.0-alpha.4` is a Windows-first, local-first reading-library prereleas
 
 - Unsigned installer; no signing certificate use approved.
 - No clean Windows 10/11 install, offline launch, persistence, upgrade, uninstall, and residual-data matrix.
-- The private vulnerability-reporting route remains unverified; any tag, GitHub Release, or public binary download still requires separate review and approval.
+- GitHub private vulnerability reporting is enabled for the public source repository. Any tag, GitHub Release, or public binary download still requires separate review and approval.
 - Manual screen-reader, Windows high-contrast, 400% zoom, and packaged audio/PDF verification remain incomplete.
 
 No public binary release should be created from these notes until every blocker is closed and the facts ledger is regenerated.
