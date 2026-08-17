@@ -115,7 +115,7 @@ jobs:
           pnpm test:rust
 
       - name: Build an unsigned NSIS verification candidate
-        run: pnpm tauri build --bundles nsis
+        run: pnpm build:windows:release
 
       - name: Preserve the unsigned CI candidate briefly
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2

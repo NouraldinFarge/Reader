@@ -81,7 +81,10 @@ const genericRules = [
   ['github-token', /\bgh(?:p|o|u|s|r)_[A-Za-z0-9_]{30,}\b/g],
   ['openai-token', /\bsk-(?:proj-)?[A-Za-z0-9_-]{20,}\b/g],
   ['slack-token', /\bxox[baprs]-[A-Za-z0-9-]{20,}\b/g],
-  ['credential-in-url', /https?:\/\/[^\s/:]+:[^\s/@]+@/gi],
+  [
+    'credential-in-url',
+    /https?:\/\/[A-Za-z0-9._~!$&'()*+,;=%-]{1,128}:[A-Za-z0-9._~!$&'()*+,;=:%-]{1,128}@/gi,
+  ],
 ];
 const findings = [];
 

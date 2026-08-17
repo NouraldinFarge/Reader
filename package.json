@@ -37,6 +37,7 @@
     "generate:sbom": "node scripts/generate-sbom.mjs",
     "generate:recruiter-fixtures": "node scripts/generate-recruiter-fixtures.mjs",
     "archive:source": "node scripts/create-source-archive.mjs",
+    "build:windows:release": "node scripts/build-windows-release.mjs",
     "prepare:release": "node scripts/prepare-release-candidate.mjs",
     "preview:media": "node scripts/serve-media.mjs",
     "tauri": "tauri",
