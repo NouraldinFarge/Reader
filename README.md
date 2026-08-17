@@ -138,7 +138,7 @@ Development began as local work before this repository history was initialized. 
 
 - Read [Support](SUPPORT.md) before sharing diagnostic information.
 - Report security concerns through the private route described in [Security](SECURITY.md).
-- Review [Contributing](CONTRIBUTING.md), [Roadmap](ROADMAP.md), and [release notes](docs/RELEASE_NOTES.md).
+- Review [Contributing](CONTRIBUTING.md), [Roadmap](ROADMAP.md), [release process](docs/RELEASE_PROCESS.md), and [release notes](docs/RELEASE_NOTES.md).
 - Vendored and build dependencies retain their upstream licenses in [third-party notices](THIRD_PARTY_NOTICES.md) and the [component manifest](THIRD_PARTY_COMPONENTS.json).
 
 Reader is licensed under the [MIT License](LICENSE). Third-party components remain governed by their own licenses and notices.
