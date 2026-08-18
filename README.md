@@ -14,9 +14,23 @@ Reader is a Windows prerelease for reading authorized EPUB, PDF, text, and audio
 
 **[Watch the 75-second repository demo](docs/media/demo/reader-alpha4-demo.mp4)** · [Read the timed transcript](docs/DEMO_SCRIPT.md) · [Review media provenance and dimensions](docs/media/README.md)
 
-| Focused reading                                                                                                                   | Local PDF rendering                                                                                   | Protected-content boundary                                                                                                                                       |
-| --------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [![Reader focused reading view in sepia](docs/media/screenshots/focused-reading.jpg)](docs/media/screenshots/focused-reading.jpg) | [![Reader canvas PDF view](docs/media/screenshots/pdf-view.jpg)](docs/media/screenshots/pdf-view.jpg) | [![Reader metadata-only protected-content screen](docs/media/screenshots/protected-content-boundary.jpg)](docs/media/screenshots/protected-content-boundary.jpg) |
+### Focused reading
+
+[![Reader focused reading view in sepia](docs/media/screenshots/focused-reading.jpg)](docs/media/screenshots/focused-reading.jpg)
+
+The real reading surface keeps contents, typography controls, progress, highlights, and synthetic text in one distraction-light view. [Open the full-size focused-reading capture.](docs/media/screenshots/focused-reading.jpg)
+
+### Local PDF rendering
+
+[![Reader canvas PDF view](docs/media/screenshots/pdf-view.jpg)](docs/media/screenshots/pdf-view.jpg)
+
+Reader renders a repository-generated PDF with the packaged local PDF.js worker; scripting, evaluation, XFA, and external content stay disabled. [Open the full-size PDF capture.](docs/media/screenshots/pdf-view.jpg)
+
+### Protected-content boundary
+
+[![Reader metadata-only protected-content screen](docs/media/screenshots/protected-content-boundary.jpg)](docs/media/screenshots/protected-content-boundary.jpg)
+
+Protected AAX-like input is identified within strict bounds and shown as metadata only—Reader does not accept activation data, decrypt, convert, or play it. [Open the full-size boundary capture.](docs/media/screenshots/protected-content-boundary.jpg)
 
 Every frame uses the real `0.1.0-alpha.4` UI with repository-generated synthetic content. The demo has no audio; the linked transcript supplies the timed narration and captions.
 

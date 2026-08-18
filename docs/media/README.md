@@ -26,7 +26,7 @@ Alt text is centralized in `docs/RECRUITER_COPY.md` and used by the README where
 
 ## Social previews
 
-- `social/github-social-preview.png` — 1280×720.
+- `social/github-social-preview.png` — 1280×640, GitHub's recommended uncropped aspect ratio.
 - `social/portfolio-og-preview.png` — 1200×630.
 - `social/preview-source.html` — reproducible composition source using the real library capture.
 

@@ -55,7 +55,7 @@ const expectedDimensions = new Map([
   ['docs/media/screenshots/pdf-view.jpg', { format: 'jpeg', width: 1280, height: 720 }],
   ['docs/media/screenshots/protected-content-boundary.jpg', { format: 'jpeg', width: 1280, height: 720 }],
   ['docs/media/demo/reader-alpha4-demo-thumbnail.jpg', { format: 'jpeg', width: 1280, height: 720 }],
-  ['docs/media/social/github-social-preview.png', { format: 'png', width: 1280, height: 720 }],
+  ['docs/media/social/github-social-preview.png', { format: 'png', width: 1280, height: 640 }],
   ['docs/media/social/portfolio-og-preview.png', { format: 'png', width: 1200, height: 630 }],
 ]);
 

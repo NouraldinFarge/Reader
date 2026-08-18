@@ -12,7 +12,7 @@ const targets = [
     name: 'GitHub social preview',
     path: resolve(repositoryRoot, 'docs', 'media', 'social', 'github-social-preview.png'),
     width: 1280,
-    height: 720,
+    height: 640,
   },
   {
     name: 'portfolio Open Graph preview',

@@ -106,7 +106,7 @@ AI coding agents assisted with research, implementation, testing, and iteration.
 | Appearance controls        | `docs/media/screenshots/appearance-controls.jpg`        | “Reader appearance panel with paper, sepia, and night themes and typography controls.”                             |
 | Recruiter demo             | `docs/media/demo/reader-alpha4-demo.mp4`                | 75-second real-UI repository asset; no standalone hosted demo URL.                                                 |
 | Demo thumbnail             | `docs/media/demo/reader-alpha4-demo-thumbnail.jpg`      | Real library UI thumbnail tracked with the public source.                                                          |
-| GitHub social preview      | `docs/media/social/github-social-preview.png`           | 1280×720 composition using the real library capture and verified positioning.                                      |
+| GitHub social preview      | `docs/media/social/github-social-preview.png`           | 1280×640 composition using the real library capture and GitHub's uncropped preview ratio.                          |
 | Portfolio preview          | `docs/media/social/portfolio-og-preview.png`            | 1200×630 composition using the real Reader UI and verified stack.                                                  |
 
 ## Publication checklist for copy owners
