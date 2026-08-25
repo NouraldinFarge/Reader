@@ -318,6 +318,7 @@ async function hostileInputJourney(context) {
   const maliciousHtml =
     Buffer.from(`<!doctype html><html><head><base href="https://example.invalid/"><meta http-equiv="refresh" content="0;url=https://example.invalid"><style>@import url(https://example.invalid/x.css)</style></head><body>
     <h1>Markup Boundary Study</h1>
+    <p id="encoded-boundary">&amp;lt;img src=x onerror=window.__readerFixtureExecuted=true&amp;gt;</p>
     <script>window.__readerFixtureExecuted = true</script>
     <iframe srcdoc="<script>top.__readerFixtureExecuted=true</script>"></iframe>
     <object data="https://example.invalid/object"></object><embed src="https://example.invalid/embed">
@@ -329,7 +330,6 @@ async function hostileInputJourney(context) {
     <a href="https://example.invalid/blocked" target="_blank">External handoff</a>
     <a id="safe-anchor" href="#safe-anchor">Safe anchor</a>
     <img src="data:image/svg+xml,<svg onload=alert(1)>"><img src="https://example.invalid/tracker.png" srcset="https://example.invalid/2x 2x">
-    <p id="encoded-boundary">&amp;lt;img src=x onerror=window.__readerFixtureExecuted=true&amp;gt;</p>
     <!--><img src="https://example.invalid/comment.png" onerror="window.__readerFixtureExecuted=true">-->
     <noscript><p title="</noscript><img src=x onerror=window.__readerFixtureExecuted=true>">noscript boundary</p></noscript>
     <template><img src="https://example.invalid/template.png" onerror="window.__readerFixtureExecuted=true"></template>
