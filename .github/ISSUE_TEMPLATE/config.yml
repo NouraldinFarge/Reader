@@ -1,1 +1,8 @@
 blank_issues_enabled: false
+contact_links:
+  - name: Report a security vulnerability privately
+    url: https://github.com/NouraldinFarge/Reader/security/advisories/new
+    about: Use GitHub private vulnerability reporting and follow the repository's redaction guidance.
+  - name: Support and privacy guidance
+    url: https://github.com/NouraldinFarge/Reader/blob/main/SUPPORT.md
+    about: Review supported questions and the data that must stay out of public reports.

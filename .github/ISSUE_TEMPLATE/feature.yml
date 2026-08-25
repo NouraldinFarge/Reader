@@ -1,7 +1,7 @@
 name: Feature request
 description: Propose a focused improvement within Reader's authorized-content scope.
 title: '[Feature]: '
-labels: [enhancement, needs-triage]
+labels: [enhancement]
 body:
   - type: markdown
     attributes:

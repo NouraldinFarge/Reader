@@ -22,4 +22,4 @@ Target length: 75 seconds. Use only the real `0.1.0-alpha.4` UI and synthetic de
 - Narration and captions use `docs/PROJECT_FACTS.json`; do not say “released,” “open source,” “signed,” “production-ready,” “fully accessible,” or “vulnerability-free.”
 - Use the synthetic PDF/AAX fixtures only; never browse to a private file picker location in-frame.
 - Confirm the final file duration is 60–90 seconds and visually inspect its first, middle, and final frames.
-- Store the finished capture as `docs/media/demo/reader-alpha4-demo.mp4`, its thumbnail as `docs/media/demo/reader-alpha4-demo-thumbnail.png`, and optimized screenshots under `docs/media/screenshots/`.
+- Store the finished capture as `docs/media/demo/reader-alpha4-demo.mp4`, its thumbnail as `docs/media/demo/reader-alpha4-demo-thumbnail.jpg`, and optimized screenshots under `docs/media/screenshots/`.

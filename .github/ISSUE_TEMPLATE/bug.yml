@@ -1,7 +1,7 @@
 name: Bug report
 description: Report a reproducible Reader problem without sharing private reading data.
 title: '[Bug]: '
-labels: [bug, needs-triage]
+labels: [bug]
 body:
   - type: markdown
     attributes:
