@@ -451,7 +451,9 @@ async function hostileInputJourney(context) {
     foreignNamespaces: [...root.querySelectorAll('*')].filter(
       (element) => element.namespaceURI !== 'http://www.w3.org/1999/xhtml',
     ).length,
-    encodedBoundary: root.querySelector('#encoded-boundary')?.textContent,
+    encodedBoundary: [...root.querySelectorAll('p')]
+      .map((paragraph) => paragraph.textContent)
+      .find((text) => text === '&lt;img src=x onerror=window.__readerFixtureExecuted=true&gt;'),
   }));
   assert.deepEqual(persistedSafety, {
     forbiddenElements: 0,
