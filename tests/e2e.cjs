@@ -318,7 +318,6 @@ async function hostileInputJourney(context) {
   const maliciousHtml =
     Buffer.from(`<!doctype html><html><head><base href="https://example.invalid/"><meta http-equiv="refresh" content="0;url=https://example.invalid"><style>@import url(https://example.invalid/x.css)</style></head><body>
     <h1>Markup Boundary Study</h1>
-    <p id="encoded-boundary">&amp;lt;img src=x onerror=window.__readerFixtureExecuted=true&amp;gt;</p>
     <script>window.__readerFixtureExecuted = true</script>
     <iframe srcdoc="<script>top.__readerFixtureExecuted=true</script>"></iframe>
     <object data="https://example.invalid/object"></object><embed src="https://example.invalid/embed">
@@ -433,11 +432,22 @@ async function hostileInputJourney(context) {
   });
   await page.locator('#close-reader').click();
 
+  // Keep safe-text persistence independent of browser-specific repair for the malformed fixture above.
+  await importPublication(page, {
+    name: 'Escaped Text Persistence.html',
+    mimeType: 'text/html',
+    buffer: Buffer.from(`<!doctype html><html><body>
+      <h1>Escaped Text Persistence</h1>
+      <p>&amp;lt;img src=x onerror=window.__readerFixtureExecuted=true&amp;gt;</p>
+    </body></html>`),
+    title: 'Escaped Text Persistence',
+  });
+
   await page.reload({ waitUntil: 'networkidle' });
   await page.getByRole('heading', { name: 'Your library' }).waitFor();
-  await page.getByRole('button', { name: 'Open Markup Boundary Study', exact: true }).click();
+  await page.getByRole('button', { name: 'Open Escaped Text Persistence', exact: true }).click();
   await page.locator('#reader-view').waitFor({ state: 'visible' });
-  const persistedSafety = await page.locator('#reader-content').evaluate((root) => ({
+  const escapedTextPersistence = await page.locator('#reader-content').evaluate((root) => ({
     forbiddenElements: root.querySelectorAll(
       'script,iframe,object,embed,form,input,button,svg,math,style,meta,base,link,template,noscript,a[href],img',
     ).length,
@@ -455,11 +465,36 @@ async function hostileInputJourney(context) {
       .map((paragraph) => paragraph.textContent)
       .find((text) => text === '&lt;img src=x onerror=window.__readerFixtureExecuted=true&gt;'),
   }));
-  assert.deepEqual(persistedSafety, {
+  assert.deepEqual(escapedTextPersistence, {
     forbiddenElements: 0,
     forbiddenAttributes: [],
     foreignNamespaces: 0,
     encodedBoundary: '&lt;img src=x onerror=window.__readerFixtureExecuted=true&gt;',
+  });
+  assert.equal(await page.evaluate(() => window.__readerFixtureExecuted), undefined);
+  await page.locator('#close-reader').click();
+
+  await page.getByRole('button', { name: 'Open Markup Boundary Study', exact: true }).click();
+  await page.locator('#reader-view').waitFor({ state: 'visible' });
+  const persistedHostileSafety = await page.locator('#reader-content').evaluate((root) => ({
+    forbiddenElements: root.querySelectorAll(
+      'script,iframe,object,embed,form,input,button,svg,math,style,meta,base,link,template,noscript,a[href],img',
+    ).length,
+    forbiddenAttributes: [...root.querySelectorAll('*')].flatMap((element) =>
+      [...element.attributes]
+        .filter((attribute) =>
+          /^(on|style$|srcdoc$|target$|ping$|formaction$|class$|name$|xlink:)/i.test(attribute.name),
+        )
+        .map((attribute) => `${element.tagName}:${attribute.name}`),
+    ),
+    foreignNamespaces: [...root.querySelectorAll('*')].filter(
+      (element) => element.namespaceURI !== 'http://www.w3.org/1999/xhtml',
+    ).length,
+  }));
+  assert.deepEqual(persistedHostileSafety, {
+    forbiddenElements: 0,
+    forbiddenAttributes: [],
+    foreignNamespaces: 0,
   });
   assert.equal(await page.evaluate(() => window.__readerFixtureExecuted), undefined);
   await page.locator('#close-reader').click();
