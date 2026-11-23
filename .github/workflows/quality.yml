@@ -102,7 +102,7 @@ jobs:
           components: clippy,rustfmt
 
       - name: Install cargo-audit
-        uses: taiki-e/install-action@ba47c86ac325773530516bb756137ac718732518 # v2.86.5
+        uses: taiki-e/install-action@75a7c0f87bd666af3cdb75c5b9e9d03ab6044e6f # v2.90.6
         with:
           tool: cargo-audit
 
